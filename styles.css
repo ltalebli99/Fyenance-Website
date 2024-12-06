@@ -253,11 +253,29 @@ main {
     text-decoration: none;
     color: var(--gray-800);
     transition: all 0.2s;
+    opacity: 1;
+    transition: opacity 0.3s;
 }
 
 .download-button:hover {
     border-color: var(--primary);
     color: var(--primary);
+}
+
+.download-button.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.download-info {
+    display: block;
+    font-size: 0.8em;
+    opacity: 0.8;
+}
+
+.download-button:not(.disabled):hover {
+    transform: translateY(-2px);
 }
 
 .guarantee {
