@@ -243,35 +243,31 @@ main {
 
 .download-button {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background: white;
-    border: 1px solid var(--gray-200);
+    gap: 0.25rem;
     padding: 1rem;
+    border: 1px solid var(--gray-200);
     border-radius: var(--radius);
     text-decoration: none;
     color: var(--gray-800);
     transition: all 0.2s;
-    opacity: 1;
-    transition: opacity 0.3s;
 }
 
-.download-button:hover {
-    border-color: var(--primary);
-    color: var(--primary);
+.download-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.download-button.disabled {
-    opacity: 0.5;
-    pointer-events: none;
-    cursor: not-allowed;
+.platform-name {
+    font-weight: 500;
 }
 
 .download-info {
-    display: block;
-    font-size: 0.8em;
-    opacity: 0.8;
+    font-size: 0.75rem;
+    color: var(--gray-600);
+    margin-top: 0.125rem;
 }
 
 .download-button:not(.disabled):hover {
