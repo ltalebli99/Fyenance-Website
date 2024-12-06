@@ -460,6 +460,22 @@ footer {
     border: 1px solid var(--border);
 }
 
+.success-card {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--modal-background);
+    border-radius: var(--radius);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: center;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .pricing-left {
     text-align: center;
     border-right: 1px solid var(--gray-200);
