@@ -89,7 +89,7 @@
                 button.disabled = true;
                 loading.classList.add('visible');
                 
-                const response = await fetch('https://api.fyenanceapp.com/create-checkout-session', {
+                const response = await fetch('https://api.fyenanceapp.com/v1/create-checkout-session', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
