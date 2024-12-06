@@ -245,13 +245,25 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.25rem;
-    padding: 1rem;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
     border: 1px solid var(--gray-200);
     border-radius: var(--radius);
     text-decoration: none;
     color: var(--gray-800);
     transition: all 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+
+.download-button:hover {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+.download-button i {
+    font-size: 1.25rem;
 }
 
 .download-content {
@@ -613,26 +625,6 @@ footer {
     flex-direction: row;
 }
 
-.download-button {
-    background-color: #ffffff;
-    color: var(--text-color);
-    padding: 1rem 2rem;
-    border-radius: var(--radius);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    transition: all 0.2s;
-}
-
-.download-button:hover {
-    background-color: var(--primary);
-    color: #ffffff;
-}
-
-.download-button i {
-    font-size: 1.25rem;
-}
 
 .guarantee-text {
     color: var(--gray-300);
