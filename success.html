@@ -20,24 +20,46 @@
                 let macAsset = assets.find(asset => asset.name.endsWith('.dmg'));
                 let linuxAsset = assets.find(asset => asset.name.endsWith('.AppImage'));
 
+                // Helper function to format file size
+                const formatSize = (bytes) => {
+                    if (bytes === 0) return '0 B';
+                    const k = 1024;
+                    const sizes = ['B', 'KB', 'MB', 'GB'];
+                    const i = Math.floor(Math.log(bytes) / Math.log(k));
+                    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(1))} ${sizes[i]}`;
+                };
+
                 // Update download buttons
                 if (windowsAsset) {
-                    document.getElementById('windows-download').href = windowsAsset.browser_download_url;
-                    document.getElementById('windows-download').classList.remove('disabled');
+                    const btn = document.getElementById('windows-download');
+                    btn.href = windowsAsset.browser_download_url;
+                    btn.classList.remove('disabled');
+                    btn.querySelector('.download-info').textContent = 
+                        `v${release.tag_name.replace('v', '')} • ${formatSize(windowsAsset.size)}`;
                 }
                 
                 if (macAsset) {
-                    document.getElementById('mac-download').href = macAsset.browser_download_url;
-                    document.getElementById('mac-download').classList.remove('disabled');
+                    const btn = document.getElementById('mac-download');
+                    btn.href = macAsset.browser_download_url;
+                    btn.classList.remove('disabled');
+                    btn.querySelector('.download-info').textContent = 
+                        `v${release.tag_name.replace('v', '')} • ${formatSize(macAsset.size)}`;
                 }
                 
                 if (linuxAsset) {
-                    document.getElementById('linux-download').href = linuxAsset.browser_download_url;
-                    document.getElementById('linux-download').classList.remove('disabled');
+                    const btn = document.getElementById('linux-download');
+                    btn.href = linuxAsset.browser_download_url;
+                    btn.classList.remove('disabled');
+                    btn.querySelector('.download-info').textContent = 
+                        `v${release.tag_name.replace('v', '')} • ${formatSize(linuxAsset.size)}`;
                 }
 
             } catch (error) {
                 console.error('Error fetching release:', error);
+                // Update error state in download info
+                document.querySelectorAll('.download-info').forEach(info => {
+                    info.textContent = 'Download unavailable';
+                });
             }
         }
 
