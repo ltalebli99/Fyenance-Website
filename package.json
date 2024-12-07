@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "tinacms dev -c \"npx serve\"",
-    "build": "echo 'Static site, no build needed'",
-    "build:cms": "tinacms build && npm run build:content"
+    "build": "tinacms build && npm run build:content",
+    "build:content": "node scripts/build-content.js"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +14,8 @@
   "dependencies": {
     "@tinacms/cli": "^1.6.12",
     "tinacms": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1"
   }
 }
