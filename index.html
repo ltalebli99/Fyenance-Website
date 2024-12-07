@@ -23,6 +23,9 @@
             <p>Break free from subscription-based finance apps forever</p>
         </div>
         <nav>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
             <a href="https://www.fyenanceapp.com" class="logo">
                 <img src="assets/images/favicon-96x96.png" alt="Fyenance Logo" class="logo-icon">
                 <h1>Fyenance</h1>
@@ -337,6 +340,21 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-toggle')) {
+                navLinks.classList.remove('active');
+            }
         });
     </script>
 </body>
