@@ -1,18 +1,25 @@
 import { defineConfig } from "tinacms";
 
 export default defineConfig({
-  branch: "main",
+  branch: process.env.GITHUB_BRANCH || "main",
   clientId: process.env.TINA_CLIENT_ID,
   token: process.env.TINA_TOKEN,
   build: {
     outputFolder: "admin",
     publicFolder: "./",
+    basePath: "",
   },
   media: {
     tina: {
       mediaRoot: "assets/images",
       publicFolder: "./",
     },
+  },
+  search: {
+    tina: {
+      indexerToken: process.env.TINA_TOKEN,
+      stopwordLanguages: ["eng"]
+    }
   },
   schema: {
     collections: [
@@ -21,6 +28,9 @@ export default defineConfig({
         label: "Pages",
         path: "_content/pages",
         format: "json",
+        ui: {
+          router: ({ document }) => `/${document._sys.filename}`,
+        },
         fields: [
           {
             type: "string",
@@ -53,6 +63,14 @@ export default defineConfig({
         label: "Features",
         path: "_content/features",
         format: "json",
+        ui: {
+          filename: {
+            readonly: true,
+            slugify: (values) => {
+              return `${values?.title?.toLowerCase().replace(/ /g, '-')}` || ''
+            },
+          },
+        },
         fields: [
           {
             type: "string",
@@ -76,5 +94,9 @@ export default defineConfig({
         ],
       },
     ],
+  },
+  cmsCallback: (cms) => {
+    // Add any CMS customizations here
+    return cms;
   },
 });
