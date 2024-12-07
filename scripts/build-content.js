@@ -1,43 +1,41 @@
 const fs = require('fs');
 const path = require('path');
+const matter = require('gray-matter');
+const marked = require('marked');
 
 function ensureDirectoryExistence(filePath) {
-  const dirname = path.dirname(filePath);
-  if (fs.existsSync(dirname)) {
-    return true;
-  }
-  ensureDirectoryExistence(dirname);
-  fs.mkdirSync(dirname);
+    const dirname = path.dirname(filePath);
+    if (fs.existsSync(dirname)) {
+        return true;
+    }
+    ensureDirectoryExistence(dirname);
+    fs.mkdirSync(dirname);
 }
 
 // Build the content files
 function buildContent() {
-  const contentDir = path.join(__dirname, '../_content');
-  const publicDir = path.join(__dirname, '../');
+    const postsDir = path.join(__dirname, '../content/posts');
+    const outputDir = path.join(__dirname, '../content');
 
-  // Process pages
-  const pagesDir = path.join(contentDir, 'pages');
-  if (fs.existsSync(pagesDir)) {
-    const pages = fs.readdirSync(pagesDir);
-    pages.forEach(page => {
-      const content = fs.readFileSync(path.join(pagesDir, page), 'utf8');
-      const outputPath = path.join(publicDir, 'content', 'pages', page);
-      ensureDirectoryExistence(outputPath);
-      fs.writeFileSync(outputPath, content);
-    });
-  }
+    // Process posts
+    if (fs.existsSync(postsDir)) {
+        const posts = fs.readdirSync(postsDir)
+            .filter(file => file.endsWith('.md'))
+            .map(file => {
+                const content = fs.readFileSync(path.join(postsDir, file), 'utf8');
+                const { data, content: markdown } = matter(content);
+                return {
+                    ...data,
+                    body: marked(markdown),
+                    slug: file.replace('.md', '')
+                };
+            });
 
-  // Process features
-  const featuresDir = path.join(contentDir, 'features');
-  if (fs.existsSync(featuresDir)) {
-    const features = fs.readdirSync(featuresDir);
-    const allFeatures = features.map(feature => {
-      return JSON.parse(fs.readFileSync(path.join(featuresDir, feature), 'utf8'));
-    });
-    const outputPath = path.join(publicDir, 'content', 'features.json');
-    ensureDirectoryExistence(outputPath);
-    fs.writeFileSync(outputPath, JSON.stringify(allFeatures));
-  }
+        // Write posts.json
+        const outputPath = path.join(outputDir, 'posts.json');
+        ensureDirectoryExistence(outputPath);
+        fs.writeFileSync(outputPath, JSON.stringify(posts));
+    }
 }
 
 buildContent();
