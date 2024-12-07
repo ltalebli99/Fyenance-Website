@@ -1287,3 +1287,46 @@ footer {
     }
 }
 
+/* Blog styles */
+.blog-header {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: var(--bg-primary);
+    color: white;
+}
+
+.blog-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.blog-posts {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.post {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.post h2 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.post-content {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0;
+}
+
