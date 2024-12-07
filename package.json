@@ -1,0 +1,19 @@
+{
+  "name": "site",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tinacms dev -c \"npx serve\"",
+    "build": "tinacms build && npm run build:content",
+    "build:content": "node scripts/build-content.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@tinacms/cli": "^1.6.12",
+    "tinacms": "^2.5.0"
+  }
+}
