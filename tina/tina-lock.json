@@ -1,6 +1,13 @@
 {
-    "schema": {
-      "version": 1,
-      "timestamp": "2024-12-07T15:03:00Z"
+  "schema": {
+    "version": 1,
+    "timestamp": "2024-03-19T15:30:00Z",
+    "lastModified": "2024-03-19T15:30:00Z",
+    "base": "main"
+  },
+  "meta": {
+    "flags": [
+      "experimentalData"
+    ]
   }
 }
