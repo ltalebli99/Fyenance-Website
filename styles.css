@@ -81,7 +81,7 @@ main {
 .hero {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 4rem 2rem;
+    padding: 8rem 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
@@ -825,5 +825,223 @@ footer {
 
 .legal-content a:hover {
     text-decoration: underline;
+}
+
+/* Replace existing social-proof styles with: */
+.social-proof {
+    background: white;
+}
+
+.value-props {
+    max-width: 1200px;
+    padding: 4rem 2rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.value-props h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    letter-spacing: -0.03em;
+}
+
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.value-card {
+    padding: 2rem;
+    border-radius: var(--radius);
+    background: var(--gray-50);
+    border: 1px solid var(--border-light);
+    transition: transform 0.2s;
+}
+
+.value-card:hover {
+    transform: translateY(-4px);
+}
+
+.value-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1.5rem;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.value-icon i {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.value-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--gray-800);
+}
+
+.value-card p {
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+.trust-banner {
+    background: var(--gray-50);
+    padding: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.trust-items {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    gap: 3rem;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--gray-700);
+    font-weight: 500;
+}
+
+.trust-item i {
+    color: var(--primary);
+    font-size: 1.25rem;
+}
+
+@media (max-width: 768px) {
+    .trust-items {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+    }
+    
+    .value-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Comparison Table */
+.comparison {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.comparison h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.comparison-table {
+    overflow-x: auto;
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-light);
+}
+
+.comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.comparison-table th {
+    background: var(--gray-50);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--gray-800);
+    border-bottom: 2px solid var(--border-light);
+}
+
+.comparison-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--gray-700);
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.comparison-table i.fa-check-circle {
+    color: var(--primary);
+}
+
+.comparison-table i.fa-times {
+    color: #dc2626;
+}
+
+.comparison-table td:first-child {
+    font-weight: 500;
+    color: var(--gray-800);
+}
+
+.comparison-note {
+    text-align: center;
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .comparison {
+        padding: 2rem 1rem;
+    }
+    
+    .comparison h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Special Offer Banner */
+.special-offer {
+    background: linear-gradient(to right, var(--primary-light), var(--primary));
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.offer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+    .stats {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .comparison-table {
+        font-size: 0.875rem;
+    }
 }
 
