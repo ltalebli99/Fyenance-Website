@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tinacms dev -c \"npx serve\"",
-    "build": "npm run build:static",
-    "build:static": "cp -r . dist/",
+    "build": "echo 'Static site, no build needed'",
     "build:cms": "tinacms build && npm run build:content"
   },
   "keywords": [],
