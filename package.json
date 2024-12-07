@@ -5,7 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tinacms dev -c \"npx serve\"",
-    "build": "tinacms build && npm run build:content",
+    "build": "npm run build:static",
+    "build:static": "cp -r . dist/ && rm -rf dist/node_modules",
+    "build:cms": "tinacms build && npm run build:content",
     "build:content": "node scripts/build-content.js"
   },
   "keywords": [],
