@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
-const marked = require('marked');
+const { marked } = require('marked');
 
 function ensureDirectoryExistence(filePath) {
     const dirname = path.dirname(filePath);
@@ -26,7 +26,7 @@ function buildContent() {
                 const { data, content: markdown } = matter(content);
                 return {
                     ...data,
-                    body: marked(markdown),
+                    body: marked.parse(markdown),
                     slug: file.replace('.md', '')
                 };
             });
