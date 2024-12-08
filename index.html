@@ -121,6 +121,9 @@
                     </div>
                     </div>
                 </div>
+                <div class="scroll-indicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
             </section>
         </div>
 
@@ -376,21 +379,6 @@
                     behavior: 'smooth'
                 });
             });
-        });
-
-        // Mobile menu toggle
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileMenuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-toggle')) {
-                navLinks.classList.remove('active');
-            }
         });
     </script>
     <script src="js/content-loader.js"></script>
