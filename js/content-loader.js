@@ -12,6 +12,11 @@ async function loadContent() {
         if (postsContainer && posts) {
             postsContainer.innerHTML = posts.map(post => `
                 <article class="post">
+                    ${post.image ? `
+                        <div class="post-image">
+                            <img src="${post.image}" alt="${post.title}">
+                        </div>
+                    ` : ''}
                     <h2><a href="${post.url}">${post.title}</a></h2>
                     <div class="post-meta">
                         <time datetime="${post.date}">${new Date(post.date).toLocaleDateString('en-US', {
@@ -23,7 +28,10 @@ async function loadContent() {
                     <div class="post-content">
                         ${post.body.split('</p>')[0]}</p>
                     </div>
-                    <a href="${post.url}" class="read-more">Read more →</a>
+                    <a href="${post.url}" class="read-more">
+                        Read more 
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </article>
             `).join('');
         }

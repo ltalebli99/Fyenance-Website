@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}} - Fyenance Blog</title>
+    <title>Welcome to Fyenance - Fyenance Blog</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -24,14 +24,14 @@
             <button class="mobile-menu-toggle" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
-            <a href="/" class="logo">
+            <a href="https://fyenanceapp.com" class="logo">
                 <img src="/assets/images/favicon-96x96.png" alt="Fyenance Logo" class="logo-icon">
                 <h1>Fyenance</h1>
             </a>
             <div class="nav-links">
-                <a href="/#features">Features</a>
-                <a href="/#pricing">Pricing</a>
-                <a href="/#faq">FAQ</a>
+                <a href="/index.html#features">Features</a>
+                <a href="/index.html#pricing">Pricing</a>
+                <a href="/index.html#faq">FAQ</a>
                 <a href="/blog.html">Blog</a>
                 <a href="/buy.html" class="nav-button">Download</a>
             </div>
@@ -43,20 +43,28 @@
             <div class="container">
                 <div class="post-header">
                     <div class="post-meta">
-                        <time datetime="{{date}}">{{formatDate date}}</time>
+                        <time datetime="2024-03-19T15:30:00.000Z">March 19, 2024</time>
                     </div>
-                    <h1>{{title}}</h1>
+                    <h1>Welcome to Fyenance</h1>
                 </div>
 
                 <div class="post-content">
-                    {{{body}}}
+                    <p>We&#39;re excited to announce the launch of Fyenance, a simple and private personal finance app that puts you in control of your money.</p>
+<h2 id="why-fyenance">Why Fyenance?</h2>
+<p>In a world where most finance apps require cloud sync and constant internet connection, Fyenance takes a different approach:</p>
+<ul>
+<li><strong>100% Private</strong>: Your data stays on your device</li>
+<li><strong>Works Offline</strong>: No internet required</li>
+<li><strong>One-time Payment</strong>: No subscriptions ever</li>
+<li><strong>Simple &amp; Fast</strong>: Instant startup and smooth performance</li>
+</ul>
+<h2 id="getting-started">Getting Started</h2>
+<p>Ready to take control of your finances? <a href="/buy.html">Download Fyenance</a> today for just $5!</p>
+
                 </div>
 
                 <div class="post-footer">
-                    <a href="/blog.html" class="back-to-blog">
-                        <i class="fas fa-arrow-left"></i>
-                        Back to Blog
-                    </a>
+                    <a href="/blog.html" class="back-to-blog">← Back to Blog</a>
                 </div>
             </div>
         </article>
@@ -81,21 +89,17 @@
 
     <script>
         // Mobile menu toggle
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.querySelector('.mobile-menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            
-            if (menuToggle && navLinks) {
-                menuToggle.addEventListener('click', () => {
-                    navLinks.classList.toggle('active');
-                });
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
 
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-toggle')) {
-                        navLinks.classList.remove('active');
-                    }
-                });
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-toggle')) {
+                navLinks.classList.remove('active');
             }
         });
     </script>

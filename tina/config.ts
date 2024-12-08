@@ -49,6 +49,12 @@ export default defineConfig({
             required: true,
           },
           {
+            type: "image",
+            name: "image",
+            label: "Featured Image",
+            description: "The main image for your blog post",
+          },
+          {
             type: "rich-text",
             name: "body",
             label: "Body",

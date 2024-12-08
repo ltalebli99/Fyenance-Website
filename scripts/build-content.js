@@ -22,9 +22,10 @@ function formatDate(date) {
 
 // Build the content files
 function buildContent() {
-    const postsDir = path.join(__dirname, '../content/posts');
-    const outputDir = path.join(__dirname, '../content');
-    const templatePath = path.join(__dirname, '../content/templates/post.html');
+    // Define paths relative to project root
+    const postsDir = 'content/posts';
+    const outputDir = 'content';
+    const templatePath = 'content/templates/post.html';
     
     // Read the template
     const template = fs.readFileSync(templatePath, 'utf8');
@@ -43,6 +44,7 @@ function buildContent() {
                     .replace(/{{title}}/g, data.title)
                     .replace(/{{date}}/g, data.date)
                     .replace(/{{formatDate date}}/g, formatDate(data.date))
+                    .replace(/{{image}}/g, data.image || '')
                     .replace(/{{{body}}}/g, marked.parse(markdown));
 
                 // Write individual post HTML file
@@ -54,14 +56,15 @@ function buildContent() {
                     ...data,
                     body: marked.parse(markdown),
                     slug: slug,
-                    url: `/posts/${slug}.html`
+                    url: `/posts/${slug}.html`,
+                    image: data.image || null
                 };
             });
 
         // Write posts.json for the blog listing
         const outputPath = path.join(outputDir, 'posts.json');
         ensureDirectoryExistence(outputPath);
-        fs.writeFileSync(outputPath, JSON.stringify(posts));
+        fs.writeFileSync(outputPath, JSON.stringify(posts, null, 2));
     }
 }
 
