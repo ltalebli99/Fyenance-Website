@@ -5,7 +5,7 @@ const branch = process.env.GITHUB_BRANCH || "main";
 
 export default defineConfig({
   branch,
-  clientId: process.env.TINA_CLIENT_ID,  // Changed from NEXT_PUBLIC_TINA_CLIENT_ID
+  clientId: process.env.TINA_CLIENT_ID,
   token: process.env.TINA_TOKEN,
 
   build: {
@@ -59,6 +59,12 @@ export default defineConfig({
             name: "body",
             label: "Body",
             isBody: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Meta Description",
+            description: "Brief description for SEO and social sharing (max 160 characters)",
           },
         ],
       },

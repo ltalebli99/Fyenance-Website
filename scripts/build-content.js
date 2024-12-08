@@ -40,11 +40,14 @@ function buildContent() {
                 const slug = file.replace('.md', '');
                 
                 // Create individual post HTML
+                const description = data.description || post.body.replace(/<[^>]*>/g, '').slice(0, 160) + '...';
                 let postHtml = template
                     .replace(/{{title}}/g, data.title)
+                    .replace(/{{description}}/g, description)
                     .replace(/{{date}}/g, data.date)
+                    .replace(/{{url}}/g, `/posts/${slug}.html`)
                     .replace(/{{formatDate date}}/g, formatDate(data.date))
-                    .replace(/{{image}}/g, data.image || '')
+                    .replace(/{{image}}/g, data.image || 'https://fyenanceapp.com/assets/images/og-image.png')
                     .replace(/{{{body}}}/g, marked.parse(markdown));
 
                 // Write individual post HTML file
