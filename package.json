@@ -4,8 +4,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "tinacms dev -c \"npx serve\"",
-    "build": "tinacms build && npm run build:content",
-    "build:content": "node scripts/build-content.js"
+    "build": "tinacms build && npm run build:content && npm run build:sitemap",
+    "build:content": "node scripts/build-content.js",
+    "build:sitemap": "node scripts/build-sitemap.js"
   },
   "keywords": [],
   "author": "",

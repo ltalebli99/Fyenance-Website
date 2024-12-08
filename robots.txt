@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fyenanceapp.com/sitemap.xml
