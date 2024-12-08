@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - Fyenance Blog</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon.ico">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-21G8LJFM86');
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="https://fyenanceapp.com" class="logo">
+                <img src="/assets/images/favicon-96x96.png" alt="Fyenance Logo" class="logo-icon">
+                <h1>Fyenance</h1>
+            </a>
+            <div class="nav-links">
+                <a href="/index.html#features">Features</a>
+                <a href="/index.html#pricing">Pricing</a>
+                <a href="/index.html#faq">FAQ</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/buy.html" class="nav-button">Download</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article class="blog-posts">
+            <div class="post">
+                <h2>{{title}}</h2>
+                <div class="post-meta">
+                    <time datetime="{{date}}">{{formatDate date}}</time>
+                </div>
+                <div class="post-content">
+                    {{{body}}}
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="/assets/images/favicon-32x32.png" alt="Fyenance Logo" class="footer-logo">
+                <p>© 2024 Fyenance</p>
+            </div>
+            <div class="footer-links">
+                <a href="mailto:lucas@metromagic.io">Contact</a>
+                <a href="/privacy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms of Service</a>
+            </div>
+            <div class="footer-credit">
+                <p>Made with <i class="fas fa-heart"></i> by <a href="https://metromagic.io" target="_blank" rel="noopener noreferrer">metromagic.io</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-toggle')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
