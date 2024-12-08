@@ -40,7 +40,7 @@ function buildContent() {
                 const slug = file.replace('.md', '');
                 
                 // Create individual post HTML
-                const description = data.description || post.body.replace(/<[^>]*>/g, '').slice(0, 160) + '...';
+                const description = data.description || markdown.replace(/<[^>]*>/g, '').slice(0, 160) + '...';
                 let postHtml = template
                     .replace(/{{title}}/g, data.title)
                     .replace(/{{description}}/g, description)

@@ -2,6 +2,7 @@
 title: Welcome to Fyenance
 date: '2024-03-19T15:30:00.000Z'
 image: '/assets/blog/welcome-to-fyenance.jpg'
+description: 'Introducing Fyenance: a simple, private personal finance app that puts you in control of your money. No cloud sync, no subscriptions, just mindful money management.'
 ---
 
 We're excited to introduce Fyenance, a personal finance app that puts you back in control of your money. While most finance apps try to do everything automatically, we believe that true financial awareness comes from mindful tracking and organization.
