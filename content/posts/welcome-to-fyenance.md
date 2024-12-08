@@ -1,7 +1,7 @@
 ---
 title: Welcome to Fyenance
 date: '2024-03-19T15:30:00.000Z'
-image: '/assets/blog/welcome-to-fyenance.png'
+image: '/assets/blog/welcome-to-fyenance.jpg'
 ---
 
 We're excited to announce the launch of Fyenance, a simple and private personal finance app that puts you in control of your money.
