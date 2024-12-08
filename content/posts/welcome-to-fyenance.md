@@ -1,6 +1,6 @@
 ---
 title: Welcome to Fyenance
-date: '2024-03-19T15:30:00.000Z'
+date: '2024-12-08T15:57:00.000Z'
 image: '/assets/blog/welcome-to-fyenance.jpg'
 description: 'Introducing Fyenance: a simple, private personal finance app that puts you in control of your money. No cloud sync, no subscriptions, just mindful money management.'
 ---
