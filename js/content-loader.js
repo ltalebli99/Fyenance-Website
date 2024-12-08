@@ -13,9 +13,11 @@ async function loadContent() {
             postsContainer.innerHTML = posts.map(post => `
                 <article class="post">
                     ${post.image ? `
-                        <div class="post-image">
-                            <img src="${post.image}" alt="${post.title}">
-                        </div>
+                        <a href="${post.url}" class="post-image-link">
+                            <div class="post-image">
+                                <img src="${post.image}" alt="${post.title}">
+                            </div>
+                        </a>
                     ` : ''}
                     <h2><a href="${post.url}">${post.title}</a></h2>
                     <div class="post-meta">
