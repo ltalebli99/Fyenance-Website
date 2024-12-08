@@ -32,13 +32,30 @@
 
     <main>
         <section class="blog-header">
-            <h1>Fyenance Blog</h1>
-            <p>Tips, updates, and insights about personal finance</p>
+            <div class="container">
+                <h1>Fyenance Blog</h1>
+                <p class="blog-subtitle">Tips, updates, and insights about personal finance</p>
+            </div>
         </section>
 
         <section class="blog-posts">
-            <div class="posts-container">
-                <!-- Posts will be loaded here by content-loader.js -->
+            <div class="container">
+                <div class="posts-container">
+                    <!-- Posts will be loaded here by content-loader.js -->
+                </div>
+                <div class="blog-sidebar">
+                    <div class="sidebar-widget">
+                        <h3>About Fyenance</h3>
+                        <p>A simple, private personal finance app that puts you in control of your money.</p>
+                        <a href="/buy.html" class="sidebar-cta">Try Fyenance →</a>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h3>Recent Posts</h3>
+                        <div class="recent-posts">
+                            <!-- Will be populated by content-loader.js -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
