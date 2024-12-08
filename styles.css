@@ -91,6 +91,7 @@ main {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
+    background-color: transparent;
 }
 
 .hero-content h1 {
