@@ -22,7 +22,8 @@ function buildSitemap() {
         '/blog.html',
         '/privacy.html',
         '/terms.html',
-        '/buy.html'
+        '/buy.html',
+        '/getting-started.html'
     ];
 
     // Start XML content
