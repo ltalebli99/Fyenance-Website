@@ -56,6 +56,28 @@ async function updateEarlyBirdCount() {
     }
 }
 
-// Call immediately and then every minute
+async function updateLicenseCount() {
+    try {
+        const response = await fetch('https://api.fyenanceapp.com/v1/admin/license-count', {
+            headers: {
+                'Authorization': `Bearer ${process.env.ADMIN_API_KEY}`
+            }
+        });
+        const data = await response.json();
+        
+        // Update all license count elements
+        const countElements = document.querySelectorAll('.license-count');
+        countElements.forEach(element => {
+            element.textContent = data.count;
+        });
+    } catch (error) {
+        console.error('Error fetching license count:', error);
+    }
+}
+
+// Call immediately and then every 10 minutes
 updateEarlyBirdCount();
-setInterval(updateEarlyBirdCount, 60000);
+setInterval(updateEarlyBirdCount, 600000);
+
+// Initialize license count
+updateLicenseCount();

@@ -2038,3 +2038,27 @@ footer {
     text-decoration: underline;
 }
 
+
+.social-proof {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+.avatar-stack {
+    display: flex;
+    align-items: center;
+}
+
+.avatar-stack img {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-right: -8px; /* Creates overlap effect */
+    box-shadow: var(--shadow);
+}
