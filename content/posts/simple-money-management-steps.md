@@ -1,6 +1,6 @@
 ---
 title: 5 Simple Steps to Better Money Management Without Bank Sync
-date: '2024-01-10T06:42:00.000Z'
+date: '2024-12-10T06:42:00.000Z'
 image: '/assets/blog/simple-money-management.jpg'
 description: 'Discover how manual expense tracking can lead to better financial awareness and control. Learn practical steps to manage your money mindfully without relying on automatic bank synchronization.'
 ---
