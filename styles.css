@@ -133,12 +133,28 @@ main {
     justify-content: center;
     text-align: center;
     text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    padding-right: 1rem;
 }
 
 .cta-button:hover {
     background-color: var(--gray-50);
     border-color: var(--gray-300);
     color: var(--primary);
+}
+
+.cta-button::before {
+    content: "Early";
+    position: absolute;
+    top: 4px;
+    right: -18px;
+    background: #FFD700;
+    color: #000;
+    font-size: 0.6em;
+    padding: 2px 20px;
+    transform: rotate(45deg);
+    font-weight: 600;
 }
 
 .nav-button {
@@ -167,7 +183,7 @@ main {
 }
 
 .features {
-    background: white;
+    background: var(--gray-50);
     padding: 6rem 2rem;
     text-align: center;
 }
@@ -416,6 +432,23 @@ footer {
     font-size: 0.875rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
+    animation: pulse 6s infinite;
+}
+
+.hero-badge .remaining-count {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 700;
+    margin: 0 0.25rem;
+}
+
+@keyframes pulse {
+    0% { transform: translateY(0); }
+    70% { transform: translateY(0); }
+    85% { transform: translateY(-3px); }
+    92% { transform: translateY(2px); }
+    100% { transform: translateY(0); }
 }
 
 .hero-cta {
@@ -484,7 +517,7 @@ footer {
     max-width: 100%;
     margin: 0 auto;
     padding: 2rem;
-    background: var(--modal-background);
+    background: white;
     border-radius: var(--radius);
     display: grid;
     grid-template-columns: auto 1fr;
@@ -596,7 +629,6 @@ footer {
 }
 
 .faq-item {
-    background: var(--modal-background);
     padding: 1.5rem;
     border-radius: var(--radius);
     text-align: left;
@@ -941,6 +973,11 @@ footer {
 }
 
 /* Comparison Table */
+.comparison-container {
+    background-color: white;
+
+}
+
 .comparison {
     padding: 4rem 2rem;
     max-width: 1200px;
@@ -1029,6 +1066,7 @@ footer {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    font-size: .9rem !important;
 }
 
 .offer-badge {
@@ -1036,9 +1074,16 @@ footer {
     align-items: center;
     gap: 0.5rem;
     background: rgba(255, 255, 255, 0.2);
-    padding: 0.25rem 0.75rem;
+    padding: 0.125rem 0.75rem;
     border-radius: 1rem;
     font-size: 0.875rem;
+}
+
+.special-offer .highlight {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 700;
 }
 
 @media (max-width: 768px) {
@@ -1744,5 +1789,229 @@ footer {
     }
     60% {
         transform: translateY(-5px) translateX(-50%);
+    }
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 4rem 2rem;
+    background: var(--gray-25);
+}
+
+.testimonials-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.testimonials-header h2 {
+    font-size: 2.5rem;
+    color: var(--gray-800);
+    margin-bottom: 1rem;
+}
+
+.testimonials-header p {
+    color: var(--gray-600);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.testimonial-content {
+    color: var(--gray-700);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: start;
+    gap: .5rem;
+}
+
+.author-avatar {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: white;
+    border-radius: 50%;
+    background: var(--gray-100);
+}
+
+.author-info h4 {
+    color: var(--gray-800);
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.2;
+}
+
+.author-info p {
+    color: var(--gray-600);
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+    .testimonials {
+        padding: 3rem 1rem;
+    }
+    
+    .testimonials-header h2 {
+        font-size: 2rem;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.price-increase-warning {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 165, 0, 0.1);
+    border-radius: var(--radius);
+    color: var(--gray-700);
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.price-increase-warning i {
+    color: #FFA500;
+}
+
+/* Mindful Money Section Styles */
+.mindful-money {
+    background: white;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.mindful-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mindful-money h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+}
+
+.mindful-money .subtitle {
+    color: var(--gray-600);
+    font-size: 1.25rem;
+    margin-bottom: 4rem;
+}
+
+.mindful-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.mindful-card {
+    padding: 2rem;
+    background: var(--gray-50);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-light);
+    transition: transform 0.2s;
+}
+
+.mindful-card:hover {
+    transform: translateY(-4px);
+}
+
+.mindful-card i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.mindful-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 1rem;
+}
+
+.mindful-card p {
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+.mindful-quote {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--primary);
+    color: white;
+    border-radius: var(--radius);
+    position: relative;
+}
+
+.mindful-quote i {
+    font-size: 2rem;
+    opacity: 0.2;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+.mindful-quote blockquote {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+    .mindful-money {
+        padding: 4rem 1.5rem;
+    }
+
+    .mindful-money h2 {
+        font-size: 2rem;
+    }
+
+    .mindful-money .subtitle {
+        font-size: 1.125rem;
+        margin-bottom: 2rem;
+    }
+
+    .mindful-grid {
+        gap: 1rem;
+    }
+
+    .mindful-quote blockquote {
+        font-size: 1.25rem;
+        padding: 0 1rem;
     }
 }

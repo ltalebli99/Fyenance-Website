@@ -50,10 +50,10 @@
     <header>
         <div class="special-offer">
             <div class="offer-badge">
-                <i class="fas fa-rocket"></i>
-                <span>Now Available</span>
+                <i class="fas fa-fire"></i>
+                <span>Launch Deal</span>
             </div>
-            <p>Break free from subscription-based finance apps forever</p>
+            <p><span id="earlyBirdCount" class="highlight remaining-count">50</span> spots left at $5 for lifetime access — Price increases to $15 after!</p>
         </div>
         <nav>
             <button class="mobile-menu-toggle" aria-label="Toggle menu">
@@ -79,6 +79,10 @@
             <section class="hero">
                 <div class="hero-content">
                 <!-- <span class="hero-badge">Version 1.0 Now Available</span> -->
+                <div class="hero-badge" id="earlyBirdBadge">
+                    <i class="fas fa-stopwatch"></i>
+                    <span class="remaining-count">50</span> early bird spots remaining
+                </div>
                 <h1>Take Control of Your Finances</h1>
                 <p class="subtitle">A simple, private, and powerful desktop app for managing your personal finances. No cloud sync. No bank connections. Just you and your money.</p>
                 <div class="hero-cta">
@@ -176,6 +180,91 @@
             </div>
         </section>
 
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="testimonials-header">
+                <h2>What Early Users Are Saying</h2>
+                <p>Don't just take our word for it - hear from people who gave Fyenance a shot.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                       "I've been using Fyenance this morning to input all my expenses and salary. I love how bloat-free and clean it is. Exactly what I needed right now and already worth the five bucks. Thank you!"                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background-color: #000000;">
+                            <i class="fab fa-reddit-alien"></i>   
+                        </div>
+                        <div class="author-info">
+                            <h4>Richard</h4>
+                            <p>Reddit</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Pricing is a no brainer compared to other apps! Since YNAB doesn't work in my country, this is perfect. The UI looks terrific!"</div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background-color: #000000;">
+                            <i class="fab fa-reddit-alien"></i>   
+                        </div>
+                        <div class="author-info">
+                            <h4>csfalcao</h4>
+                            <p>Reddit</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "I've tried many finance apps, but Fyenance's privacy-first approach won me over. No cloud sync means my financial data stays on my computer where it belongs."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="assets/images/placeholder.jpg" alt="Name" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Name</h4>
+                            <p>Platform</p>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- New Mindful Money Section -->
+        <section class="mindful-money">
+            <div class="mindful-content">
+                <h2>We Believe in Mindful Money Tracking</h2>
+                <p class="subtitle">Sometimes less automation means more awareness</p>
+                
+                <div class="mindful-grid">
+                    <div class="mindful-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>Increased Awareness</h3>
+                        <p>Manual tracking creates a stronger connection with your spending habits. Each transaction becomes a moment of reflection rather than just another automated entry.</p>
+                    </div>
+                    
+                    <div class="mindful-card">
+                        <i class="fas fa-bullseye"></i>
+                        <h3>Intentional Spending</h3>
+                        <p>When you regularly log your expenses, you naturally become more thoughtful about your purchases. It's like a financial meditation practice.</p>
+                    </div>
+                    
+                    <div class="mindful-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Better Big Picture</h3>
+                        <p>Without the noise of pending transactions and real-time updates, you can focus on trends and patterns that really matter for your financial health.</p>
+                    </div>
+                </div>
+
+                <div class="mindful-quote">
+                    <i class="fas fa-quote-left"></i>
+                    <blockquote>
+                        "The real value isn't in tracking every penny automatically – it's in understanding your relationship with money."
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
         <!-- Features Section -->
         <section id="features" class="features">
             <h2>Powerful Features, Simple Design</h2>
@@ -221,9 +310,10 @@
         </section>
 
         <!-- Comparison Section -->
-        <section class="comparison">
-            <h2>How Fyenance Compares</h2>
-            <div class="comparison-table">
+        <section class="comparison-container">
+            <div class="comparison">
+                <h2>How Fyenance Compares</h2>
+                <div class="comparison-table">
                 <table>
                     <thead>
                         <tr>
@@ -278,9 +368,12 @@
                         </tr>
                     </tbody>
                 </table>
+                </div>
+                <p class="comparison-note">* Data accurate as of March 2024</p>
             </div>
-            <p class="comparison-note">* Data accurate as of March 2024</p>
         </section>
+
+        
 
         <!-- Pricing Section -->
         <section id="pricing" class="pricing">
@@ -291,7 +384,12 @@
                         <span class="amount">$5</span>
                         <span class="price-note">one-time payment</span>
                     </div>
-                    <a href="#download" class="cta-button">Get Started Today</a>
+                    
+                    <a href="#download" class="cta-button"><i class="fas fa-seedling"></i> Start Your Mindful Money Journey</a>
+                    <div class="price-increase-warning">
+                        <i class="fas fa-clock"></i>
+                        Price increases to $15 after early bird ends
+                    </div>
                 </div>
                 
                 <ul class="features-list">
@@ -351,6 +449,8 @@
             </div>
             <p class="guarantee">30-day money-back guarantee. No questions asked.</p>
         </section>
+
+        
     </main>
 
     <footer class="footer">
@@ -382,5 +482,6 @@
         });
     </script>
     <script src="js/content-loader.js"></script>
+    <script src="js/deal-status.js"></script>
 </body>
 </html>
