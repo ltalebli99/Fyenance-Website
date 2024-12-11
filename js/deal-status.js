@@ -60,7 +60,7 @@ async function updateLicenseCount() {
     try {
         const response = await fetch('https://api.fyenanceapp.com/v1/admin/license-count', {
             headers: {
-                'Authorization': `Bearer ${process.env.ADMIN_API_KEY}`
+                'Authorization': `Bearer __ADMIN_API_KEY__`
             }
         });
         const data = await response.json();
