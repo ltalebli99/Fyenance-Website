@@ -1,6 +1,6 @@
 ---
 title: Why Privacy Matters in Personal Finance Apps
-date: '2024-12-10T3:30:00.000Z'
+date: '2024-12-10T03:30:00.000Z'
 image: '/assets/blog/privacy-finance.jpg'
 description: 'Understanding the importance of privacy in personal finance apps and why keeping your financial data local might be the smartest choice for your security and peace of mind.'
 ---
