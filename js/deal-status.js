@@ -80,4 +80,6 @@ updateEarlyBirdCount();
 setInterval(updateEarlyBirdCount, 600000);
 
 // Initialize license count
-updateLicenseCount();
+document.addEventListener('DOMContentLoaded', () => {
+    updateLicenseCount();
+});
