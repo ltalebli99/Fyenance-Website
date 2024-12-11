@@ -48,7 +48,8 @@
                 // Find assets for each platform
                 const assets = release.assets;
                 let windowsAsset = assets.find(asset => asset.name.endsWith('.exe'));
-                let macAsset = assets.find(asset => asset.name.endsWith('.dmg'));
+                let macIntelAsset = assets.find(asset => asset.name.includes('x64') && asset.name.endsWith('.dmg'));
+                let macSiliconAsset = assets.find(asset => asset.name.includes('arm64') && asset.name.endsWith('.dmg'));
                 let linuxAsset = assets.find(asset => asset.name.endsWith('.AppImage'));
 
                 // Helper function to format file size
@@ -69,12 +70,20 @@
                         `v${release.tag_name.replace('v', '')} • ${formatSize(windowsAsset.size)}`;
                 }
                 
-                if (macAsset) {
-                    const btn = document.getElementById('mac-download');
-                    btn.href = macAsset.browser_download_url;
+                if (macIntelAsset) {
+                    const btn = document.getElementById('mac-intel-download');
+                    btn.href = macIntelAsset.browser_download_url;
                     btn.classList.remove('disabled');
                     btn.querySelector('.download-info').textContent = 
-                        `v${release.tag_name.replace('v', '')} • ${formatSize(macAsset.size)}`;
+                        `v${release.tag_name.replace('v', '')} • ${formatSize(macIntelAsset.size)}`;
+                }
+                
+                if (macSiliconAsset) {
+                    const btn = document.getElementById('mac-silicon-download');
+                    btn.href = macSiliconAsset.browser_download_url;
+                    btn.classList.remove('disabled');
+                    btn.querySelector('.download-info').textContent = 
+                        `v${release.tag_name.replace('v', '')} • ${formatSize(macSiliconAsset.size)}`;
                 }
                 
                 if (linuxAsset) {
@@ -87,7 +96,6 @@
 
             } catch (error) {
                 console.error('Error fetching release:', error);
-                // Update error state in download info
                 document.querySelectorAll('.download-info').forEach(info => {
                     info.textContent = 'Download unavailable';
                 });
@@ -130,7 +138,7 @@
                             <i class="fas fa-download"></i>
                             <div>
                                 <h3>Download Fyenance</h3>
-                                <div class="download-options" style="margin-top: 1rem;">
+                                <div class="download-options two-columns" style="margin-top: 1rem;">
                                     <a id="windows-download" href="#" class="download-button disabled">
                                         <div class="download-content">
                                             <i class="fab fa-windows"></i>
@@ -138,10 +146,17 @@
                                         </div>
                                         <span class="download-info">Loading...</span>
                                     </a>
-                                    <a id="mac-download" href="#" class="download-button disabled">
+                                    <a id="mac-intel-download" href="#" class="download-button disabled">
                                         <div class="download-content">
                                             <i class="fab fa-apple"></i>
-                                            <span class="platform-name">macOS</span>
+                                            <span class="platform-name">macOS (Intel)</span>
+                                        </div>
+                                        <span class="download-info">Loading...</span>
+                                    </a>
+                                    <a id="mac-silicon-download" href="#" class="download-button disabled">
+                                        <div class="download-content">
+                                            <i class="fab fa-apple"></i>
+                                            <span class="platform-name">macOS (Apple Silicon)</span>
                                         </div>
                                         <span class="download-info">Loading...</span>
                                     </a>

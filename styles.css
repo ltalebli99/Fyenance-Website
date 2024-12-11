@@ -263,6 +263,12 @@ main {
     flex-direction: row;
 }
 
+.download-options.two-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
 .download-button {
     display: flex;
     flex-direction: column;
