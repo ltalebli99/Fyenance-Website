@@ -176,6 +176,32 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- License Recovery -->
+                    <div class="help-card">
+                        <div class="help-card-header">
+                            <i class="fas fa-key"></i>
+                            <h2>License Recovery</h2>
+                        </div>
+                        <div class="help-card-content">
+                            <p>Lost your license key? Enter your purchase email below to recover it:</p>
+                            
+                            <form id="recovery-form" class="support-form">
+                                <div class="form-group">
+                                    <label for="recovery-email">Purchase Email</label>
+                                    <input type="email" id="recovery-email" name="email" required 
+                                        placeholder="Enter the email used for purchase">
+                                </div>
+                                
+                                <button type="submit" class="submit-button">
+                                    <i class="fas fa-sync"></i>
+                                    Recover License
+                                </button>
+                            </form>
+
+                            <div id="recovery-message" style="display: none; margin-top: 1rem; padding: 1rem; border-radius: 8px;"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -199,6 +225,7 @@
         </div>
     </footer>
     <script src="js/support-form.js"></script>
+    <script src="js/recovery-form.js"></script>
     <script src="js/deal-status.js"></script>
 </body>
 </html>
