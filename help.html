@@ -92,14 +92,32 @@
                                 </div>
                                 
                                 <div class="platform-guide">
-                                    <h3><i class="fab fa-windows"></i> Windows: Administrator Rights Required</h3>
-                                    <p>If you receive a permissions error or the app won't start:</p>
-                                    <ol>
-                                        <li>Find Fyenance in your Start menu</li>
-                                        <li>Right-click on Fyenance</li>
-                                        <li>Select "Run as administrator"</li>
-                                        <li>Click "Yes" when prompted</li>
-                                    </ol>
+                                    <h3><i class="fab fa-windows"></i> Windows Installation</h3>
+                                    
+                                    <div class="windows-issue">
+                                        <h4>SmartScreen Warning</h4>
+                                        <p>If you see a "Microsoft Defender SmartScreen prevented an unrecognized app from starting" message:</p>
+                                        <ol>
+                                            <li>When the SmartScreen popup appears, click "More info"</li>
+                                            <li>Click "Run anyway" at the bottom of the dialog</li>
+                                            <li>If prompted for administrator rights, click "Yes"</li>
+                                        </ol>
+                                        <div class="notice-tip">
+                                            <i class="fas fa-shield-alt"></i>
+                                            <p>This warning appears because we're a new application. The warning will be removed in time as our Microsoft reputation grows.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="windows-issue" style="margin-top: 20px;">
+                                        <h4>Administrator Rights Required</h4>
+                                        <p>If you receive a permissions error or the app won't start:</p>
+                                        <ol>
+                                            <li>Find Fyenance in your Start menu</li>
+                                            <li>Right-click on Fyenance</li>
+                                            <li>Select "Run as administrator"</li>
+                                            <li>Click "Yes" when prompted</li>
+                                        </ol>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -180,5 +198,6 @@
         </div>
     </footer>
     <script src="js/support-form.js"></script>
+    <script src="js/deal-status.js"></script>
 </body>
 </html>
