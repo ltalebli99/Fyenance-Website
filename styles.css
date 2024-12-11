@@ -135,7 +135,6 @@ main {
     text-decoration: none;
     position: relative;
     overflow: hidden;
-    padding-right: 1rem;
 }
 
 .cta-button:hover {
@@ -2015,3 +2014,21 @@ footer {
         padding: 0 1rem;
     }
 }
+
+
+.terms-acceptance {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 1rem 0;
+    line-height: 1.4;
+}
+
+.terms-acceptance a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.terms-acceptance a:hover {
+    text-decoration: underline;
+}
+
