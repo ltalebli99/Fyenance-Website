@@ -2043,9 +2043,15 @@ footer {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
     font-size: 0.875rem;
     color: var(--gray-600);
+}
+
+@media (max-width: 768px) {
+    .trusted-proof {
+        justify-content: center;
+    }
 }
 
 .avatar-stack {
