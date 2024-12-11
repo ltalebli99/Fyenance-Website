@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support - Fyenance</title>
+    <meta name="description" content="Get help with Fyenance, find answers to common questions, and learn how to make the most of your personal finance tracking.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fyenanceapp.com/help.html">
+    <meta property="og:title" content="Help & Support - Fyenance">
+    <meta property="og:description" content="Get help with Fyenance, find answers to common questions, and learn how to make the most of your personal finance tracking.">
+    <meta property="og:image" content="https://fyenanceapp.com/assets/images/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://fyenanceapp.com/help.html">
+    <meta name="twitter:title" content="Help & Support - Fyenance">
+    <meta name="twitter:description" content="Get help with Fyenance, find answers to common questions, and learn how to make the most of your personal finance tracking.">
+    <meta name="twitter:image" content="https://fyenanceapp.com/assets/images/og-image.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="help.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.ico">
+</head>
+<body>
+    <header>
+        <div class="special-offer">
+            <div class="offer-badge">
+                <i class="fas fa-fire"></i>
+                <span>Launch Deal</span>
+            </div>
+            <p><span id="earlyBirdCount" class="highlight remaining-count">50</span> spots left at $5 for lifetime access — Price increases to $15 after!</p>
+        </div>
+        <nav>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="https://www.fyenanceapp.com" class="logo">
+                <img src="assets/images/favicon-96x96.png" alt="Fyenance Logo" class="logo-icon">
+                <h1>Fyenance</h1>
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+                <a href="blog.html">Blog</a>
+                <a href="buy.html" class="nav-button">Download</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main-content">
+        <section class="help-section">
+            <div class="container">
+                <h1>Help & Support</h1>
+                
+                <div class="help-grid">
+                    <!-- Troubleshooting Guide -->
+                    <div class="help-card">
+                        <div class="help-card-header">
+                            <i class="fas fa-wrench"></i>
+                            <h2>Troubleshooting</h2>
+                        </div>
+                        <div class="help-card-content">
+                            <div class="notice-box">
+                                <i class="fas fa-info-circle"></i>
+                                <p>These additional steps are temporary while our app completes the certification process with Apple and Microsoft. We're working to simplify the installation process.</p>
+                            </div>
+
+                            <div class="platform-guides">
+                                <div class="platform-guide">
+                                    <h3><i class="fab fa-apple"></i> macOS: App Can't Be Opened</h3>
+                                    <p>If you see a message that the app can't be opened because it's from an unidentified developer or that it's "damaged":</p>
+                                    <ol>
+                                        <li><strong>Important:</strong> Make sure Fyenance.app is in your Applications folder (drag it there if it isn't)</li>
+                                        <li>If you see a message saying the app is damaged and should be moved to trash, ignore it</li>
+                                        <li>Open Terminal (use Search in top right)</li>
+                                        <li>Copy and paste this command:
+                                            <div class="code-block">
+                                                xattr -c /Applications/Fyenance.app
+                                            </div>
+                                        </li>
+                                        <li>Try opening Fyenance again from Applications folder</li>
+                                    </ol>
+                                    <div class="notice-tip">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <p>The app must be in your Applications folder for these steps to work.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="platform-guide">
+                                    <h3><i class="fab fa-windows"></i> Windows: Administrator Rights Required</h3>
+                                    <p>If you receive a permissions error or the app won't start:</p>
+                                    <ol>
+                                        <li>Find Fyenance in your Start menu</li>
+                                        <li>Right-click on Fyenance</li>
+                                        <li>Select "Run as administrator"</li>
+                                        <li>Click "Yes" when prompted</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Support -->
+                    <div class="help-card">
+                        <div class="help-card-header">
+                            <i class="fas fa-envelope"></i>
+                            <h2>Contact Support</h2>
+                        </div>
+                        <div class="help-card-content">
+                            <form id="support-form" class="support-form">
+                                <div class="form-group">
+                                    <label for="email">Your Email</label>
+                                    <input type="email" id="email" name="email" required 
+                                        placeholder="Enter your email address">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="issue">Issue Type</label>
+                                    <select id="issue" name="issue" required>
+                                        <option value="">Select an issue type</option>
+                                        <option value="installation">Installation Problem</option>
+                                        <option value="activation">License Activation</option>
+                                        <option value="bug">Bug Report</option>
+                                        <option value="feature">Feature Request</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" required 
+                                        placeholder="Describe your issue or question"></textarea>
+                                </div>
+
+                                <button type="submit" class="submit-button">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Send Message
+                                </button>
+                            </form>
+
+                            <div class="alternative-contact">
+                                <p>Or reach us directly:</p>
+                                <div class="contact-options">
+                                    <a href="mailto:lucas@metromagic.io" class="contact-button">
+                                        <i class="fas fa-envelope"></i>
+                                        Email Support
+                                    </a>
+                                    <a href="https://github.com/metromagic/fyenance/issues" class="contact-button" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-github"></i>
+                                        Report Issue
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="assets/images/favicon-32x32.png" alt="Fyenance Logo" class="footer-logo">
+                <p>© 2024 Fyenance</p>
+            </div>
+            <div class="footer-links">
+                <a href="mailto:lucas@metromagic.io">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            <div class="footer-credit">
+                <p>Made with <i class="fas fa-heart"></i> by <a href="https://metromagic.io" target="_blank" rel="noopener noreferrer">metromagic.io</a></p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/support-form.js"></script>
+</body>
+</html>
