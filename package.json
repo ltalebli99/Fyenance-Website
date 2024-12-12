@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tinacms dev -c \"npx serve\"",
-    "build": "tinacms build && npm run build:content && npm run build:sitemap",
+    "build": "tsc && tinacms build && npm run build:content && npm run build:sitemap",
     "build:content": "node scripts/build-content.js",
     "build:sitemap": "node scripts/build-sitemap.js"
   },
@@ -19,6 +19,7 @@
     "tinacms": "^2.5.0"
   },
   "devDependencies": {
+    "typescript": "^5.0.0",
     "@types/node": "^22.10.1"
   }
 }

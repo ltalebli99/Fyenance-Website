@@ -1,10 +1,10 @@
-async function animateCount(element, target, duration = 6000) {
+async function animateCount(element: HTMLElement, target: number, duration = 6000) {
     const start = 50;
     const frames = 60;
     const totalSteps = frames * (duration / 1000);
     let step = 0;
     
-    const easeOutQuint = x => 1 - Math.pow(1 - x, 5);
+    const easeOutQuint = (x: number) => 1 - Math.pow(1 - x, 5);
     
     const animate = () => {
         step++;
@@ -14,11 +14,11 @@ async function animateCount(element, target, duration = 6000) {
         const current = start - (start - target) * easedProgress;
         
         if (progress >= 1) {
-            element.textContent = Math.round(target);
+            element.textContent = Math.round(target).toString();
             return;
         }
         
-        element.textContent = Math.round(current);
+        element.textContent = Math.round(current).toString();
         requestAnimationFrame(animate);
     };
     
@@ -60,15 +60,22 @@ async function updateLicenseCount() {
     try {
         const response = await fetch('https://api.fyenanceapp.com/v1/admin/license-count', {
             headers: {
-                'Authorization': `Bearer __ADMIN_API_KEY__`
+                'Authorization': `Bearer ${process.env.ADMIN_API_KEY}`
             }
         });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const data = await response.json();
         
         // Update all license count elements
         const countElements = document.querySelectorAll('.license-count');
         countElements.forEach(element => {
-            element.textContent = data.count;
+            if (element instanceof HTMLElement) {
+                element.textContent = data.count;
+            }
         });
     } catch (error) {
         console.error('Error fetching license count:', error);
