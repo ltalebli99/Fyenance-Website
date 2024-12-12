@@ -31,7 +31,7 @@ async function updateEarlyBirdCount() {
         const data = await response.json();
         
         // Get all elements that need updating
-        const countElements = document.querySelectorAll('.remaining-count');
+        const countElements = document.querySelectorAll<HTMLElement>('.remaining-count');
         
         countElements.forEach(element => {
             animateCount(element, data.remaining);
@@ -46,8 +46,8 @@ async function updateEarlyBirdCount() {
 
         // Hide elements if sold out
         if (data.remaining <= 0) {
-            const specialOffer = document.querySelector('.special-offer');
-            const earlyBirdBadge = document.querySelector('.hero-badge');
+            const specialOffer = document.querySelector<HTMLElement>('.special-offer');
+            const earlyBirdBadge = document.querySelector<HTMLElement>('.hero-badge');
             if (specialOffer) specialOffer.style.display = 'none';
             if (earlyBirdBadge) earlyBirdBadge.style.display = 'none';
         }
@@ -71,11 +71,9 @@ async function updateLicenseCount() {
         const data = await response.json();
         
         // Update all license count elements
-        const countElements = document.querySelectorAll('.license-count');
+        const countElements = document.querySelectorAll<HTMLElement>('.license-count');
         countElements.forEach(element => {
-            if (element instanceof HTMLElement) {
-                element.textContent = data.count;
-            }
+            element.textContent = data.count;
         });
     } catch (error) {
         console.error('Error fetching license count:', error);
