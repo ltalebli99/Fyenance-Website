@@ -1,5 +1,5 @@
 async function animateCount(element, target, duration = 6000) {
-    const start = 50;
+    const start = 100;
     const frames = 60;
     const totalSteps = frames * (duration / 1000);
     let step = 0;
