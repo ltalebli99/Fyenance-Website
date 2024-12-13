@@ -39,21 +39,24 @@ document.getElementById('check-form').addEventListener('submit', async (e) => {
                     <ul>
                         ${data.nextSteps.map(step => `
                             <li>
-                                <strong>${step.issue}</strong><br>
-                                ${step.action}<br>
+                                <strong>${step.issue}</strong>
+                                ${step.action}
                                 <small>${step.details}</small>
                             </li>
                         `).join('')}
                     </ul>
                 </div>
-                <p><small>Support Reference: ${data.support.reference}</small></p>
+
+                <div class="support-reference">
+                    Support Reference: ${data.support.reference}
+                </div>
             `;
             resultDiv.className = 'success';
         } else {
             resultDiv.innerHTML = `
                 <h4>Error</h4>
                 <p>${data.message}</p>
-                <p>${data.details || ''}</p>
+                ${data.details ? `<p><small>${data.details}</small></p>` : ''}
             `;
             resultDiv.className = 'error';
         }

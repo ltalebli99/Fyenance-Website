@@ -429,8 +429,10 @@
 
 #license-result {
     margin-top: 1.5rem;
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 8px;
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
 #license-result.success {
@@ -441,4 +443,73 @@
 #license-result.error {
     background: #ffebee;
     border: 1px solid #ffcdd2;
+}
+
+#license-result h4 {
+    font-size: 1.1rem;
+    margin: 0 0 1rem 0;
+    color: var(--gray-900);
+}
+
+#license-result p {
+    margin: 0.5rem 0;
+    color: var(--gray-700);
+}
+
+#license-result strong {
+    color: var(--gray-900);
+}
+
+/* Next Steps section */
+.next-steps {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.next-steps h4 {
+    margin-bottom: 1rem;
+}
+
+.next-steps ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.next-steps li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.next-steps li:before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+}
+
+.next-steps li:last-child {
+    margin-bottom: 0;
+}
+
+.next-steps li strong {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.next-steps li small {
+    color: var(--gray-600);
+    display: block;
+    margin-top: 0.25rem;
+}
+
+/* Support reference */
+.support-reference {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 0.85rem;
+    color: var(--gray-600);
 }
