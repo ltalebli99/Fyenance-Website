@@ -181,25 +181,45 @@
                     <div class="help-card">
                         <div class="help-card-header">
                             <i class="fas fa-key"></i>
-                            <h2>License Recovery</h2>
+                            <h2>License Management</h2>
                         </div>
                         <div class="help-card-content">
-                            <p>Lost your license key? Enter your purchase email below to recover it:</p>
-                            
-                            <form id="recovery-form" class="support-form">
-                                <div class="form-group">
-                                    <label for="recovery-email">Purchase Email</label>
-                                    <input type="email" id="recovery-email" name="email" required 
-                                        placeholder="Enter the email used for purchase">
-                                </div>
-                                
-                                <button type="submit" class="submit-button">
-                                    <i class="fas fa-sync"></i>
-                                    Recover License
-                                </button>
-                            </form>
+                            <div class="license-tabs">
+                                <button class="tab-button active" onclick="showTab('recovery')">Recover License</button>
+                                <button class="tab-button" onclick="showTab('check')">Check Status</button>
+                            </div>
 
-                            <div id="recovery-message" style="display: none; margin-top: 1rem; padding: 1rem; border-radius: 8px;"></div>
+                            <div id="recovery-tab" class="tab-content active">
+                                <p style="margin-bottom: .5rem;">Lost your license key? Enter your purchase email below to recover it:</p>
+                                <form id="recovery-form" class="support-form">
+                                    <div class="form-group">
+                                        <input type="email" id="recovery-email" name="email" required 
+                                            placeholder="Enter the email used for purchase">
+                                    </div>
+                                    
+                                    <button type="submit" class="submit-button">
+                                        <i class="fas fa-sync"></i>
+                                        Recover License
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div id="check-tab" class="tab-content">
+                                <p style="margin-bottom: .5rem;">Check the status of your license key:</p>
+                                <form id="check-form" class="support-form">
+                                    <div class="form-group">
+                                        <input type="text" id="license-key" name="license" required 
+                                            placeholder="Enter your license key">
+                                    </div>
+                                    
+                                    <button type="submit" class="submit-button">
+                                        <i class="fas fa-search"></i>
+                                        Check Status
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div id="license-result" style="display: none; margin-top: 1rem; padding: 1rem; border-radius: 8px;"></div>
                         </div>
                     </div>
                 </div>
@@ -227,5 +247,6 @@
     <script src="js/support-form.js"></script>
     <script src="js/recovery-form.js"></script>
     <script src="js/deal-status.js?t=20241213"></script>
+    <script src="js/license-check.js"></script>
 </body>
 </html>

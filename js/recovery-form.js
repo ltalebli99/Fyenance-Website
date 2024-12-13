@@ -2,9 +2,19 @@ document.getElementById('recovery-form').addEventListener('submit', async (e) =>
     e.preventDefault();
     
     const email = document.getElementById('recovery-email').value;
-    const messageDiv = document.getElementById('recovery-message');
-    const submitButton = e.target.querySelector('button');
+    let messageDiv = document.getElementById('recovery-message');
     
+    // Create message div if it doesn't exist
+    if (!messageDiv) {
+        messageDiv = document.createElement('div');
+        messageDiv.id = 'recovery-message';
+        e.target.appendChild(messageDiv);
+    }
+    
+    const submitButton = e.target.querySelector('button');
+    const originalButtonHtml = submitButton.innerHTML;
+    
+    // Set loading state
     submitButton.disabled = true;
     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Recovering...';
     
@@ -23,7 +33,11 @@ document.getElementById('recovery-form').addEventListener('submit', async (e) =>
         if (response.ok) {
             messageDiv.style.backgroundColor = '#d4edda';
             messageDiv.style.color = '#155724';
+            messageDiv.style.marginTop = '1rem';
+            messageDiv.style.padding = '1rem';
+            messageDiv.style.borderRadius = '8px';
             messageDiv.innerHTML = '<i class="fas fa-check-circle"></i> We\'ve sent your license key to your email address.';
+            
         } else {
             messageDiv.style.backgroundColor = '#f8d7da';
             messageDiv.style.color = '#721c24';
@@ -34,8 +48,10 @@ document.getElementById('recovery-form').addEventListener('submit', async (e) =>
         messageDiv.style.backgroundColor = '#f8d7da';
         messageDiv.style.color = '#721c24';
         messageDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> Failed to contact server';
+    } finally {
+        // Reset button state
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonHtml;
+        submitButton.style.backgroundColor = ''; // Reset background color
     }
-    
-    submitButton.disabled = false;
-    submitButton.innerHTML = '<i class="fas fa-sync"></i> Recover License';
 });

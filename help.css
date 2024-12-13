@@ -387,3 +387,58 @@
         transform: rotate(360deg);
     }
 }
+
+.license-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.tab-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: 500;
+    color: #666;
+    position: relative;
+}
+
+.tab-button.active {
+    color: #2E7D32;
+}
+
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #2E7D32;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+#license-result {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+#license-result.success {
+    background: #e8f5e9;
+    border: 1px solid #c8e6c9;
+}
+
+#license-result.error {
+    background: #ffebee;
+    border: 1px solid #ffcdd2;
+}
