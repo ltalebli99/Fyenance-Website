@@ -24,7 +24,7 @@ document.getElementById('check-form').addEventListener('submit', async (e) => {
     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...';
 
     try {
-        const response = await fetch(`/v1/appsumo/check-license/${licenseKey}`);
+        const response = await fetch(`/v1/check-license/${licenseKey}`);
         const data = await response.json();
         
         if (data.status === 'found') {
