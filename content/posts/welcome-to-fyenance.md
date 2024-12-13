@@ -33,7 +33,7 @@ We built Fyenance because we believe you shouldn't need to fight with your finan
 - **Organize Your Way**: Create categories that match how you think about money
 - **Split Easily**: Divide purchases into multiple categories in seconds
 - **See Clearly**: Get an accurate picture of your spending, not AI guesses
-- **Pay Once**: Own the app forever for just $5, no subscriptions
+- **Pay Once**: Own the app forever for just $12, no subscriptions
 
 ## Simple by Design
 
@@ -47,7 +47,7 @@ Fyenance focuses on doing one thing well: helping you track and organize your sp
 - 💰 **Multiple Accounts**: Track different accounts separately
 - 📈 **Simple Reports**: Understand your finances at a glance
 
-## Why $5?
+## Why $12?
 
 We believe good software should be affordable and straightforward. While the big finance apps charge monthly subscriptions ($5-15/month) to access your own spending data, we decided to be a bit rebellious: pay once, own forever.
 
@@ -57,7 +57,7 @@ No subscriptions means:
 - Focus on making the core experience great, not extracting value
 - Updates and improvements included (because of course they should be)
 
-At $5 – less than a fancy coffee or one month of those other apps – you get to keep Fyenance forever. It's our small stand against the subscription economy, and a price that keeps the app accessible while letting us maintain and improve it for the long term.
+At $12 – about the cost of a nice lunch or one month of those other apps – you get to keep Fyenance forever. It's our small stand against the subscription economy, and a price that keeps the app accessible while letting us maintain and improve it for the long term.
 
 ## Your Data, Your Device
 
@@ -71,7 +71,7 @@ The only thing we ask for is your email address for your license and occasional 
 
 Ready to take real control of your finances?
 
-1. [Download Fyenance](/buy.html) for just $5
+1. [Download Fyenance](/buy.html) for just $12
 2. Start tracking your expenses immediately
 3. No account creation or setup required
 
