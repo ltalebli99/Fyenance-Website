@@ -1470,7 +1470,7 @@ footer {
 /* Sidebar */
 .blog-sidebar {
     position: sticky;
-    top: 2rem;
+    top: 9rem;
     align-self: start;
 }
 
