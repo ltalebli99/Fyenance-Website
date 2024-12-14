@@ -90,6 +90,18 @@
             }
             
             try {
+                // Track the purchase button click
+                gtag('event', 'begin_checkout', {
+                    currency: 'USD',
+                    value: 12.00,
+                    items: [{
+                        item_name: 'Fyenance License',
+                        item_category: 'Software License',
+                        price: 12.00,
+                        quantity: 1
+                    }]
+                });
+
                 button.disabled = true;
                 loading.classList.add('visible');
                 

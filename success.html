@@ -192,8 +192,47 @@
             </div>
         </div>
     </footer>
+
+    
     <!-- Analytics Scripts -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86"></script>
     <script src="js/cookie-consent.js"></script>
+    <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+    
+        // Track successful purchase
+        async function trackPurchase() {
+            const sessionId = getUrlParameter('session_id');
+            
+            if (!sessionId) return; // No session ID, don't track
+            
+            // Send purchase event to Google Analytics
+            gtag('event', 'purchase', {
+                transaction_id: sessionId,
+                value: 12.00,
+                currency: 'USD',
+                items: [{
+                    item_name: 'Fyenance License',
+                    item_category: 'Software License',
+                    price: 12.00,
+                    quantity: 1
+                }]
+            });
+        }
+    
+        // Run when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.gtag) {
+                trackPurchase();
+            }
+        });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86"></script>
+    
 </body>
 </html>
