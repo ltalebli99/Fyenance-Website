@@ -286,7 +286,11 @@ main {
         gap: 0.75rem;
         margin-top: 0.75rem;
     }
-    
+
+    .download-options.three-columns {
+        grid-template-columns: 1fr !important;
+    }
+
     .download-button {
         width: 100%;
         justify-content: center;
@@ -336,6 +340,10 @@ main {
     margin: 2rem auto;
     max-width: 800px;
     flex-direction: row;
+}
+
+.download-options.three-columns {
+    grid-template-columns: repeat(3, 1fr);
 }
 
 @media (min-width: 768px) {
@@ -2138,4 +2146,58 @@ footer {
     border: 2px solid white;
     margin-right: -8px; /* Creates overlap effect */
     box-shadow: var(--shadow);
+}
+
+
+/* Add to your styles.css */
+.legal-banner {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 3rem 2rem;
+    color: white;
+    text-align: center;
+    margin-top: -4rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.legal-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/images/pattern.svg') center/cover;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.legal-banner h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+.legal-banner p {
+    margin: 0.5rem 0 0;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.legal-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .legal-banner {
+        padding: 2rem 1rem;
+    }
+    
+    .legal-banner h1 {
+        font-size: 2rem;
+    }
 }
