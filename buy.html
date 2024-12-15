@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="css/cookie-consent.css">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.ico">
     <script src="https://js.stripe.com/v3/"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-21G8LJFM86');
+    </script>
 </head>
 <body>
     <header>
@@ -90,17 +97,19 @@
             }
             
             try {
-                // Track the purchase button click
-                gtag('event', 'begin_checkout', {
-                    currency: 'USD',
-                    value: 12.00,
-                    items: [{
-                        item_name: 'Fyenance License',
-                        item_category: 'Software License',
-                        price: 12.00,
-                        quantity: 1
-                    }]
-                });
+                // Only track if gtag exists (meaning user accepted analytics cookies)
+                if (typeof gtag === 'function') {
+                    gtag('event', 'begin_checkout', {
+                        currency: 'USD',
+                        value: 12.00,
+                        items: [{
+                            item_name: 'Fyenance License',
+                            item_category: 'Software License',
+                            price: 12.00,
+                            quantity: 1
+                        }]
+                    });
+                }
 
                 button.disabled = true;
                 loading.classList.add('visible');
