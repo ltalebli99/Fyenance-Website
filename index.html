@@ -575,7 +575,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Hero CTA buttons
             const heroButtons = [
-                '.hero-cta .cta-button',                    // "Download Now — Just $12"
                 '.cta-container .cta-button-alt',           // "Get Started Today — Just $12"
                 '.pricing .cta-button',                     // "Start Your Mindful Money Journey"
                 '.download-options .download-button'         // All OS-specific download buttons
@@ -584,7 +583,7 @@
             heroButtons.forEach(selector => {
                 document.querySelectorAll(selector).forEach(button => {
                     button.addEventListener('click', () => {
-                        rdt('track', 'AddToCart');
+                        rdt('track', 'Lead');
                     });
                 });
             });
