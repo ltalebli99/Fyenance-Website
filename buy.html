@@ -97,6 +97,8 @@
                 return;
             }
             
+            rdt('track', 'AddToCart');
+
             try {
                 // Only track if gtag exists (meaning user accepted analytics cookies)
                 if (typeof gtag === 'function') {
@@ -136,5 +138,6 @@
     <!-- Analytics Scripts -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86"></script>
     <script src="js/cookie-consent.js"></script>
+    <script src="js/reddit-pixel.js"></script>
 </body>
 </html>

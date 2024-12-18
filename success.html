@@ -211,21 +211,30 @@
         // Track successful purchase
         async function trackPurchase() {
             const sessionId = getUrlParameter('session_id');
+            const email = getUrlParameter('email');
             
             if (!sessionId) return; // No session ID, don't track
-            
-            // Send purchase event to Google Analytics
-            gtag('event', 'purchase', {
-                transaction_id: sessionId,
-                value: 12.00,
-                currency: 'USD',
-                items: [{
-                    item_name: 'Fyenance License',
-                    item_category: 'Software License',
-                    price: 12.00,
-                    quantity: 1
-                }]
-            });
+            if (!email) return; // No email, don't track
+
+            // Track in Google Analytics
+            if (typeof gtag === 'function') {
+                gtag('event', 'purchase', {
+                    transaction_id: sessionId,
+                    value: 12.00,
+                    currency: 'USD',
+                    items: [{
+                        item_name: 'Fyenance License',
+                        item_category: 'Software License',
+                        price: 12.00,
+                        quantity: 1
+                    }]
+                });
+            }
+
+            // Track in Reddit Pixel
+            if (typeof trackRedditPurchase === 'function') {
+                trackRedditPurchase(email, sessionId);
+            }
         }
     
         // Run when page loads
@@ -235,5 +244,6 @@
             }
         });
     </script>
+    <script src="js/reddit-pixel.js"></script>
 </body>
 </html>
