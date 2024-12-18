@@ -1,7 +1,7 @@
 ---
 title: "Fyenance 1.1: A Major Leap Forward"
 date: '2024-12-18T10:00:00.000Z'
-image: '/assets/blog/v1-1-update.jpg'
+image: '/assets/blog/v1-1-update.png'
 description: 'Check out the improvements in Fyenance 1.1, including enhanced interface controls, multi-currency support, smart importing, and much more.'
 ---
 
