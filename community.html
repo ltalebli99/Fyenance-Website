@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub - Fyenance</title>
+    <meta name="description" content="Explore our public Supahub for documentation, guides, and community resources.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fyenanceapp.com/community.html">
+    <meta property="og:title" content="Community - Fyenance">
+    <meta property="og:description" content="Explore our public Supahub for documentation, guides, and community resources.">
+    <meta property="og:image" content="https://fyenanceapp.com/assets/images/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://fyenanceapp.com/community.html">
+    <meta name="twitter:title" content="Community - Fyenance">
+    <meta name="twitter:description" content="Explore our public Supahub for documentation, guides, and community resources.">
+    <meta name="twitter:image" content="https://fyenanceapp.com/assets/images/og-image.png">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/community.css">
+    <link rel="stylesheet" href="css/cookie-consent.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="https://www.fyenanceapp.com" class="logo">
+                <img src="assets/images/favicon-96x96.png" alt="Fyenance Logo" class="logo-icon">
+                <h1>Fyenance</h1>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#features">Features</a>
+                <a href="index.html#pricing">Pricing</a>
+                <a href="index.html#faq">FAQ</a>
+                <a href="blog.html">Blog</a>
+                <a href="buy.html" class="nav-button">Download</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="hub-container">
+        <div class="hub-content">
+            <div class="hub-frame-container">
+                <div data-supahub-embed></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="assets/images/favicon-32x32.png" alt="Fyenance Logo" class="footer-logo">
+                <p>© 2024 Fyenance</p>
+            </div>
+            <div class="footer-links">
+                <a href="help.html">Help</a>
+                <a href="community.html">Community</a>
+                <a href="mailto:info@fyenanceapp.com">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            <div class="footer-credit">
+                <p>Made with <i class="fas fa-heart"></i> by <a href="https://metromagic.io" target="_blank" rel="noopener noreferrer">metromagic.io</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script id="supahub" type="text/javascript">
+        !(function (s, u, p, a) {
+          function supahub() {
+            var g = u.createElement(p),
+              h = u.getElementsByTagName(p)[0];
+            (g.id = a),
+              (g.src = "https://widget.supahub.com/sdk.js"),
+              h.parentNode.insertBefore(g, h);
+            g.onload = function () {
+              window.SupahubWidget("embed", {
+                workspaceName: "fyenance", 
+                initialPage: "Board", 
+                hideLogo: true, 
+                hideNav: true,
+              });
+            };
+          }
+          "function" != typeof s.SupahubWidget &&
+            (s.SupahubWidget = function () {
+              (s.SupahubWidget.q = s.SupahubWidget.q || []).push(arguments);
+            }),
+            "complete" === u.readyState || "interactive" === u.readyState
+              ? supahub()
+              : s.addEventListener("DOMContentLoaded", supahub);
+        })(window, document, "script", "supahub-sdk");
+      </script>
+
+    <!-- Analytics Scripts -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86"></script>
+    <script src="js/cookie-consent.js"></script>
+</body>
+</html>

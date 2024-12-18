@@ -205,6 +205,7 @@ main {
 }
 
 .feature-card {
+    background: white;
     padding: 2rem;
     border-radius: var(--radius);
     text-align: center;
@@ -2200,4 +2201,48 @@ footer {
     .legal-banner h1 {
         font-size: 2rem;
     }
+}
+
+.cta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.cta-button-alt {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--primary);
+    border-radius: var(--radius);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button-alt:hover {
+    background-color: var(--primary-dark);
+}
+
+.cta-button-alt::before {
+    content: "Early";
+    position: absolute;
+    top: 4px;
+    right: -18px;
+    background: #FFD700;
+    color: #000;
+    font-size: 0.6em;
+    padding: 2px 20px;
+    transform: rotate(45deg);
+    font-weight: 600;
 }

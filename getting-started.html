@@ -114,6 +114,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/cookie-consent.css">
     <link rel="stylesheet" href="css/getting-started.css">
 </head>
 <body>
@@ -138,17 +139,18 @@
     </header>
 
     <main class="main-content docs-container">
-       
+        <!-- Move the TOC outside of docs-content and uncomment the sidebar -->
         <div class="docs-content">
             <div class="docs-header">
-                <h1>Fyenance: Offline Personal Finance Tracking App</h1>
+                <img src="assets/images/favicon.ico" alt="Fyenance Logo" class="logo-icon" style="width: 100px; height: 100px;">
+                <h1>The Offline Personal Finance Tracking App</h1>
                 
                 <p class="docs-intro">
-                    Fyenance is a robust offline desktop application designed to help individuals manage and track their personal finances efficiently. Built with Electron, Fyenance offers a comprehensive suite of features that enable users to monitor their accounts, transactions, recurring payments, categories, and generate insightful financial reports. With a focus on security, usability, and functionality, Fyenance serves as an essential tool for personal financial planning and management.
+                    Take control of your finances with Fyenance - a secure offline desktop app that helps you track expenses, build better spending habits, and make mindful financial decisions.
                 </p>
             </div>
 
-            <div class="table-of-contents">
+            <!-- <div class="table-of-contents">
                 <div class="toc-header">
                     <i class="fas fa-list"></i>
                     <h2>Table of Contents</h2>
@@ -190,6 +192,16 @@
                             <li><a href="#support"><i class="fas fa-life-ring"></i> Support</a></li>
                         </ul>
                     </div>
+                </div>
+            </div> -->
+
+            <div class="alert alert-info">
+                <div class="alert-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="alert-content">
+                    <h4>Work in Progress</h4>
+                    <p>This Getting Started guide is currently being updated and some information may be inaccurate or outdated. Thank you for your understanding as we work to provide a great experience for you. If you have any suggestions for improving this documentation, please visit our <a href="/community">community page</a> to submit your feedback.</p>
                 </div>
             </div>
 
@@ -1186,7 +1198,7 @@
                             </div>
                         </div>
                 
-                        <div class="charts-section">
+                        <!-- <div class="charts-section">
                             <h4><i class="fas fa-chart-line"></i> Visual Analytics</h4>
                             <div class="charts-grid">
                                 <div class="chart-card">
@@ -1206,7 +1218,7 @@
                                     <img src="/assets/images/top-spending-chart.png" alt="Top Spending Categories" class="chart-preview">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                 
                         <div class="export-section">
                             <div class="export-options">
@@ -1554,7 +1566,7 @@
 
                             <div class="faq-card">
                                 <div class="faq-header">
-                                    <i class="fas fa-wifi-slash"></i>
+                                    <i class="fas fa-wifi"></i>
                                     <h4>Can I use Fyenance offline?</h4>
                                 </div>
                                 <div class="faq-content">
@@ -1609,8 +1621,8 @@
                                 </div>
                                 <div class="faq-content">
                                     <p>If you have lost your license key, please contact our support team at 
-                                        <a href="mailto:support@metromagic.io" class="contact-link">
-                                            <i class="fas fa-envelope"></i> support@metromagic.io
+                                        <a href="mailto:hi@fyenanceapp.com" class="contact-link">
+                                            <i class="fas fa-envelope"></i> hi@fyenanceapp.com
                                         </a>
                                     </p>
                                 </div>
@@ -1666,8 +1678,8 @@
                                 <div class="support-details">
                                     <h4>Email Support</h4>
                                     <p>Contact our support team directly:</p>
-                                    <a href="mailto:support@metromagic.io" class="support-link">
-                                        support@metromagic.io
+                                    <a href="mailto:hi@fyenanceapp.com" class="support-link">
+                                        hi@fyenanceapp.com
                                     </a>
                                 </div>
                             </div>
@@ -1679,8 +1691,8 @@
                                 <div class="support-details">
                                     <h4>Website</h4>
                                     <p>Visit our official website:</p>
-                                    <a href="https://www.metromagic.io" class="support-link" target="_blank" rel="noopener noreferrer">
-                                        www.metromagic.io
+                                    <a href="https://www.fyenanceapp.com" class="support-link" target="_blank" rel="noopener noreferrer">
+                                        www.fyenanceapp.com
                                     </a>
                                 </div>
                             </div>
@@ -1702,11 +1714,7 @@
                         <div class="support-resources">
                             <h4><i class="fas fa-book"></i> Additional Resources</h4>
                             <div class="resources-grid">
-                                <a href="/docs/api.html" class="resource-card">
-                                    <i class="fas fa-code"></i>
-                                    <span>API Documentation</span>
-                                </a>
-                                <a href="/docs/troubleshooting.html" class="resource-card">
+                                <a href="/help.html" class="resource-card">
                                     <i class="fas fa-wrench"></i>
                                     <span>Troubleshooting Guide</span>
                                 </a>
@@ -1727,7 +1735,8 @@
                 </div>
             </section>
         </div>
-        <!-- <aside class="docs-sidebar">
+        
+        <aside class="docs-sidebar">
             <div class="toc-nav">
                 <div class="toc-header">
                     <i class="fas fa-list"></i>
@@ -1772,7 +1781,7 @@
                     </div>
                 </div>
             </div>
-        </aside> -->
+        </aside>
     </main>
 
     <footer class="footer">

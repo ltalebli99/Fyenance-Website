@@ -1,0 +1,28 @@
+.hub-container {
+    margin-top: 70px;
+    min-height: calc(100vh - 70px - 100px);
+    display: flex;
+    flex-direction: column;
+}
+
+.hub-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.hub-frame-container {
+    flex: 1;
+    position: relative;
+    width: 100%;
+}
+
+[data-supahub-embed] {
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .hub-container {
+        margin-top: 60px;
+    }
+}
