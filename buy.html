@@ -97,6 +97,8 @@
                 return;
             }
             
+            rdt('track', 'Lead');
+
             try {
                 // Only track if gtag exists (meaning user accepted analytics cookies)
                 if (typeof gtag === 'function') {

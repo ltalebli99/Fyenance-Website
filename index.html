@@ -571,5 +571,24 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86"></script>
     <script src="js/cookie-consent.js"></script>
     <script src="js/reddit-pixel.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hero CTA buttons
+            const heroButtons = [
+                '.hero-cta .cta-button',                    // "Download Now — Just $12"
+                '.cta-container .cta-button-alt',           // "Get Started Today — Just $12"
+                '.pricing .cta-button',                     // "Start Your Mindful Money Journey"
+                '.download-options .download-button'         // All OS-specific download buttons
+            ];
+
+            heroButtons.forEach(selector => {
+                document.querySelectorAll(selector).forEach(button => {
+                    button.addEventListener('click', () => {
+                        rdt('track', 'AddToCart');
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
