@@ -1538,21 +1538,17 @@ footer {
 }
 
 .post-content img {
+    width: 100%;
     max-width: 100%;
     height: auto;
     border-radius: var(--radius);
     margin: 2rem 0;
+    box-shadow: var(--shadow);
 }
 
 .post-content .gif-container {
     max-width: 800px;
     margin: 2rem auto;
-}
-
-.post-content .gif-container img {
-    width: 100%;
-    height: auto;
-    box-shadow: var(--shadow);
 }
 
 .read-more {
