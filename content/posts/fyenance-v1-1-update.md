@@ -7,11 +7,7 @@ description: 'Check out the improvements in Fyenance 1.1, including enhanced int
 
 We're excited to announce the release of Fyenance 1.1, our biggest update yet! This release brings substantial improvements across every aspect of the app, from core functionality to user experience. Let's get into what's new.
 
-<div class="gif-container">
-
-![Fyenance 1.1](/assets/blog/121724updatesfyenance.gif)
-
-</div>
+<img src="/assets/blog/121724updatesfyenance.gif" alt="Fyenance 1.1" style="width: 100%; max-width: 800px; margin: 2rem auto;"/>
 
 ## 🎨 Refreshed Interface
 
