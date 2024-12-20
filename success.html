@@ -213,8 +213,6 @@
             const sessionId = getUrlParameter('session_id');
             const email = getUrlParameter('email');
             
-            console.log('trackPurchase called with:', { sessionId, email });
-
             if (!sessionId) {
                 console.log('No session ID found, skipping tracking');
                 return;
@@ -243,14 +241,11 @@
             if (typeof trackRedditPurchase === 'function') {
                 console.log('Calling trackRedditPurchase');
                 trackRedditPurchase(email, sessionId);
-            } else {
-                console.log('trackRedditPurchase function not found');
             }
         }
     
         // Run when page loads
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOMContentLoaded - checking for purchase tracking');
             trackPurchase();
         });
     </script>

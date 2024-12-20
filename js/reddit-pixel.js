@@ -6,8 +6,6 @@ rdt('track', 'PageVisit');
 
 // Function to track purchase with advanced matching
 function trackRedditPurchase(email, transactionId) {
-    console.log('trackRedditPurchase called with:', { email, transactionId });
-    
     // Reinitialize with user data
     rdt('init', 'a2_g5tvpc00kw9p', {
         email: email,
@@ -16,7 +14,6 @@ function trackRedditPurchase(email, transactionId) {
     
     // Add small delay to ensure initialization completes
     setTimeout(() => {
-        console.log('Sending Reddit Purchase event');
         rdt('track', 'Purchase');
     }, 100);
 }
