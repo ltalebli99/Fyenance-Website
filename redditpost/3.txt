@@ -1,0 +1,26 @@
+I built an app over the weekend and it got 10K visitors in 12 hours
+Hey everyone, I first got the idea for this app almost 6 months ago.
+
+It's an app where you can save ideas but with a twist - you set an expiry date, and after it expires, your idea goes public.
+
+This was the inspiration behind it - we all have tons of ideas every day, but we never work on 95% of them. At the same time, there are plenty of people who want to build something but can't think of what to make.
+
+So either the expiry date motivates you to actually work on it, or the idea goes public and someone else gets to bring it to life. Win-win.
+
+Finally decided to built it this Sunday.
+
+Decided not to over engineer. Kept it super simple, and added just the basic features. Finished it by night, posted it on HackerNews, Reddit, and Twitter and went to sleep.
+
+Woke up next morning to an email saying my Vercel analytics was maxed out. Best email ever!
+
+The post blew up on HackerNews and my app got 6K+ visitors in 7 hours.
+
+People started asking for features like votes, sorting, comments, etc - implemented some of them the same day and By afternoon, it got 10K+ visitors.
+
+https://imgur.com/a/KeMVYzs
+
+Learned a good lesson that we all need to stop over-engineering stuff. I had so many feature ideas but controlled myself and thought "fk it, let's launch first and add what users actually want."
+
+So if you have an idea, just build the minimum and ship it. If you don't, you can find one here - https://ideaharbor.xyz
+
+Don't overcomplicate it. Just focus on getting the users and let them tell you what features they want.

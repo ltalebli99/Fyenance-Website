@@ -1,0 +1,17 @@
+my great failure: I invented deep fakes
+B2B SaaS (Enterprise)
+I've sat on this for a bit over 10 years now. I'm the idiot that originally patented "automated actor replacement in filmed media" - the original technical name for what people now call deep fakes - and I did this work between 2003 and 2013, which at that point I went bankrupt and sold the patents.
+
+I was trying to make an advertising company that featured "insert the viewer into the ad they are viewing" technology, with Academy Award winning staff and an optimized for actor replacement VFX pipeline. I'd been both a programmer and digital artist in VFX at the same studio these others worked, and when we pitched and demoed our initial technology in '08 we were met with accusations of fraud and disbelief. People at VCs and angel investor groups simply did not believe the technology was possible, or the economics could never work. It worked, and the economics did work thanks to our knowing what we were doing. The entire company was planned as my graduate MBA thesis, where I had to prove all those things.
+
+We were also an early SaaS, before the SaaS business model was fully accepted. So that added suspicions to our presentations. But little by little they were getting convinced that what we were presenting was possible, and potentially advertising revolutionary.
+
+But every single time, at some point one of the people receiving the presentation would interrupt and exclaim "Pornography! OMG what this can do with porn!" And at that point that investor group, VC or whom ever could not stop discussing applying the tech to porn. I'd try to explain that would a) be a lawsuit engine, b) destroy use of the tech for the larger advertising market, and c) make 50% of the world's population hate me personally. No thanks. But they would all talk themselves into thinking that using automated actor replacement for porn was the investment they wanted to make. Make porn or no investment. We chose not.
+
+I pivoted to making 3D game characters with anyone's likeness. At that point E.A. was $100M into their "game face" system and were not interested in discussing mine unless I gave it to them free. I even knew all of them over there - I'd worked on the 3D0 OS when it was still a part of E.A. and not spun out as 3D0. I only managed a few small game studio contracts, not really enough to maintain the global patents that cost my life savings.
+
+After I went bankrupt, the company I'd licensed the 3D reconstruction of a person's head neural net hired me as a software scientist, and there the company became one of the leading facial recognition companies in the world. But all I got was a lousy salary and burnout. But I'm still alive. I like to think wiser. I've got another new SaaS, but that's not this post.
+
+some of the patents: https://patents.justia.com/inventor/blake-senftner
+
+After the pivot to a custom 3D character service: https://www.youtube.com/watch?v=lELORWgaudU&t=3s

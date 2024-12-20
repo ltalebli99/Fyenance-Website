@@ -1,0 +1,24 @@
+:root {
+    /* Primary Colors */
+    --primary: #2E7D32;      /* Main green */
+    --primary-dark: #1B5E20; /* Darker green */
+    --primary-light: #4CAF50; /* Lighter green */
+
+    /* Neutral Colors */
+    --gray-50: #F8FAF8;     /* Slightly green-tinted white */
+    --gray-100: #F1F4F1;    /* Very light green-gray */
+    --gray-200: #E8EBE8;    /* Light green-gray */
+    --gray-300: #D1D6D1;    /* Medium green-gray */
+    --gray-600: #4B5563;    /* Original gray */
+    --gray-700: #2F3B2F;    /* Dark green-gray */
+    --gray-800: #1F291F;    /* Darker green-gray */
+    --gray-900: #121912;    /* Almost black with green tint */
+
+    /* Other Variables */
+    --border: #e4e4e4;
+    --border-light: #E8EBE8;
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --radius: 8px;
+    --font-primary: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
