@@ -103,6 +103,9 @@
     </script>
 </head>
 <body>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=8909592305800884&ev=PageView&noscript=1"
+    /></noscript>
     <header>
         <nav>
             <a href="https://www.fyenanceapp.com" class="logo">
@@ -242,6 +245,12 @@
                 console.log('Calling trackRedditPurchase');
                 trackRedditPurchase(email, sessionId);
             }
+
+            // Track in Meta Pixel
+            if (typeof trackMetaPurchase === 'function') {
+                console.log('Calling trackMetaPurchase');
+                trackMetaPurchase(email, sessionId);
+            }
         }
     
         // Run when page loads
@@ -250,5 +259,6 @@
         });
     </script>
     <script src="js/reddit-pixel.js"></script>
+    <script src="js/meta-pixel.js"></script>
 </body>
 </html>

@@ -19,6 +19,9 @@
     </script>
 </head>
 <body>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=8909592305800884&ev=PageView&noscript=1"
+    /></noscript>
     <header>
         <nav>
             <a href="https://www.fyenanceapp.com" class="logo">
@@ -97,6 +100,8 @@
                 return;
             }
             
+            // Track email lead
+            trackMetaLead(email);
             rdt('track', 'AddToCart');
 
             try {
@@ -139,5 +144,6 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86"></script>
     <script src="js/cookie-consent.js"></script>
     <script src="js/reddit-pixel.js"></script>
+    <script src="js/meta-pixel.js"></script>
 </body>
 </html>

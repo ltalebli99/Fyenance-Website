@@ -37,6 +37,9 @@
     <link rel="stylesheet" href="css/features.css">
 </head>
 <body>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=8909592305800884&ev=PageView&noscript=1"
+    /></noscript>
 
 
 
@@ -575,6 +578,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86"></script>
     <script src="js/cookie-consent.js"></script>
     <script src="js/reddit-pixel.js"></script>
+    <script src="js/meta-pixel.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Hero CTA buttons
@@ -588,6 +592,10 @@
                 document.querySelectorAll(selector).forEach(button => {
                     button.addEventListener('click', () => {
                         rdt('track', 'Lead');
+                        fbq('track', 'ViewContent', {
+                            content_name: 'Buy Page View',
+                            content_type: 'product'
+                        });
                     });
                 });
             });
