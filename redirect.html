@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fyenance - Simple Personal Finance Planning</title>
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fyenanceapp.com/">
+    <meta property="og:title" content="Fyenance - Break Free from Subscription Finance Apps">
+    <meta property="og:description" content="A privacy-focused desktop app for managing your finances. One-time $12 payment, lifetime updates. No subscriptions, no cloud sync, just you and your money.">
+    
+    <!-- Redirect after a brief delay -->
+    <script>
+        // Get the destination URL from the query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const destination = urlParams.get('to') || '/';
+        
+        // Redirect after 500ms
+        setTimeout(() => {
+            window.location.href = destination;
+        }, 500);
+    </script>
+</head>
+<body style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+    <p style="font-size: 1.2rem; color: #666;">Redirecting...</p>
+</body>
+</html>
