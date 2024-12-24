@@ -240,6 +240,7 @@ button {
 .calculator-content-container {
     flex: 1;
     max-width: 900px;
+    padding: 2rem;
 }
 
 .process-timeline {
@@ -836,5 +837,42 @@ code {
 
     .calculator-content-container article p {
         font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .calculator-content-container {
+        padding: 1rem;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .content-item h3 {
+        font-size: 1.1rem;
+    }
+
+    .content-item p {
+        font-size: 0.9rem;
+    }
+
+    .calculator-content-container h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .calculator-content-container {
+        padding: 0.5rem;
+    }
+
+    .content-item h3 {
+        font-size: 1rem;
+    }
+
+    .content-item p {
+        font-size: 0.85rem;
     }
 }

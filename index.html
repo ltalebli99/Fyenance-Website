@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/cookie-consent.css">
     <link rel="stylesheet" href="css/features.css">
+    <link rel="stylesheet" href="css/popup.css">
 </head>
 <body>
     <noscript><img height="1" width="1" style="display:none"
@@ -44,13 +45,13 @@
 
 
     <header>
-        <div class="special-offer">
+        <!-- <div class="special-offer">
             <div class="offer-badge">
                 <i class="fas fa-fire"></i>
                 <span>Launch Deal</span>
             </div>
             <p><span id="earlyBirdCount" class="highlight remaining-count">100</span> spots left at $12 for lifetime access — Price increases to $25 after!</p>
-        </div>
+        </div> -->
         <nav>
             <button class="mobile-menu-toggle" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
@@ -85,14 +86,82 @@
                     </a>
                     <span class="lifetime-note">One-time payment, lifetime updates</span>
                 </div>
-                <div class="trusted-proof">
-                    <div class="avatar-stack">
-                        <img src="assets/images/avatar-1.jpg" alt="User avatar">
-                        <img src="assets/images/avatar-2.jpg" alt="User avatar">
-                        <img src="assets/images/avatar-3.jpg" alt="User avatar">
-                    </div>
-                    <span>Trusted by <span class="license-count">--+</span> early adopters</span>
-                </div>
+                
+
+                <style>
+                .trusted-proof {
+                    margin-top: 2rem;
+                    padding: 1rem;
+                    background: rgba(255, 255, 255, 0.8);
+                    backdrop-filter: blur(8px);
+                    border-radius: 12px;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                    max-width: 600px; /* Adjust width as needed */
+                    margin-left: auto;
+                    margin-right: auto;
+                    grid-column: span 2;
+                }
+                @media (max-width: 768px) {
+                    .trusted-proof {
+                        grid-column: span 1;
+                    }
+                    .rating-text {
+                        display: none;
+                    }
+                }
+                .social-proof-content {
+                    display: flex;
+                    align-items: center;
+                    gap: 1.5rem;
+                }
+                .avatar-stack {
+                    display: flex;
+                    align-items: center;
+                }
+                .avatar-stack .avatar {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                    border: 2px solid white;
+                    margin-right: -8px;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.2s ease;
+                }
+                .avatar-stack .avatar:hover { transform: translateY(-2px); }
+                .avatar-more {
+                    width: 32px;
+                    height: 32px;
+                    background: var(--primary);
+                    color: white;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 0.875rem;
+                    font-weight: 600;
+                }
+                .trust-message {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.25rem;
+                }
+                .trust-count {
+                    font-weight: 600;
+                    color: var(--gray-800);
+                }
+                .trust-count .highlight { color: var(--primary); }
+                .trust-rating {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.25rem;
+                    color: #fbbf24;
+                    font-size: 0.875rem;
+                }
+                .rating-text {
+                    color: var(--gray-600);
+                    margin-left: 0.25rem;
+                }
+                </style>
             </div>
             <div class="hero-image">
                 <video autoplay loop muted playsinline class="screenshot">
@@ -128,6 +197,23 @@
                             <div class="feature-subtitle">Your data stays local</div>
                         </div>
                     </div>
+                    </div>
+                </div>
+                <div class="trusted-proof">
+                    <div class="social-proof-content">
+                        <div class="avatar-stack">
+                            <img src="assets/images/avatar-1.jpg" alt="User avatar" class="avatar">
+                            <img src="assets/images/avatar-2.jpg" alt="User avatar" class="avatar">
+                            <img src="assets/images/avatar-3.jpg" alt="User avatar" class="avatar">
+                            <div class="avatar-more">+</div>
+                        </div>
+                        <div class="trust-message">
+                            <div class="trust-count"><span class="license-count highlight">--+</span> early adopters</div>
+                            <div class="trust-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span class="rating-text">5.0 average rating</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="scroll-indicator">
@@ -560,6 +646,152 @@
             </div>
         </div>
     </footer>
+
+    <div id="email-popup" class="popup">
+        <div class="popup-content">
+            <span class="popup-close-button" onclick="closeModal()">&times;</span>
+            <h2 class="popup-title">
+                <div class="money-animation">
+                    <i class="fas fa-money-bill-wave money-bill" style="color: var(--primary);"></i>
+                    <i class="fas fa-money-bill-wave money-bill" style="color: var(--primary); opacity: 0;"></i>
+                    <i class="fas fa-money-bill-wave money-bill" style="color: var(--primary); opacity: 0;"></i>
+                </div>
+                Stay in the Loop
+            </h2>
+            <p>Get helpful insights on personal finance, updates on new features, and be part of our growing community of mindful money managers.</p>
+            <input type="email" id="popup-email" placeholder="Enter your email address" required>
+            <button class="popup-submit-button" onclick="submitEmail()">Join the Community</button>
+            <div class="popup-footer">
+                <p>We respect your privacy. <a href="privacy.html">Learn more</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .money-animation {
+        position: relative;
+        display: inline-block;
+        width: 30px;
+        height: 60px;
+        margin-right: 10px;
+    }
+
+    .money-bill {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
+        transition: all 0.5s ease;
+    }
+
+    .money-bill:nth-child(1) {
+        z-index: 3;
+    }
+
+    .money-bill:nth-child(2) {
+        z-index: 2;
+    }
+
+    .money-bill:nth-child(3) {
+        z-index: 1;
+    }
+
+    .money-animation.animate .money-bill:nth-child(1) {
+        transform: translate(-150%, -50%) rotate(90deg);
+    }
+
+    .money-animation.animate .money-bill:nth-child(2) {
+        opacity: 1 !important;
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .money-animation.animate .money-bill:nth-child(3) {
+        opacity: 1 !important;
+        transform: translate(50%, -50%) rotate(90deg);
+    }
+    </style>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const moneyAnimation = document.querySelector('.money-animation');
+        
+        function animateMoney() {
+            moneyAnimation.classList.add('animate');
+            setTimeout(() => {
+                moneyAnimation.classList.remove('animate');
+            }, 2000);
+        }
+
+        // Initial animation
+        setTimeout(animateMoney, 500);
+        
+        // Repeat animation every 4 seconds
+        setInterval(animateMoney, 4000);
+    });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user has already submitted email
+            const hasSubmittedEmail = localStorage.getItem('emailSubmitted');
+            
+            if (!hasSubmittedEmail) {
+                setTimeout(() => {
+                    const popup = document.getElementById('email-popup');
+                    if (popup) {
+                        popup.classList.add('show');
+                    } else {
+                        console.error('Popup element not found');
+                    }
+                }, 30000);
+            }
+
+            window.closeModal = function() {
+                const popup = document.getElementById('email-popup');
+                if (popup) {
+                    popup.classList.remove('show');
+                }
+            };
+
+            // Handle clicking outside popup
+            document.addEventListener('click', (e) => {
+                const popup = document.getElementById('email-popup');
+                const popupContent = popup?.querySelector('.popup-content');
+                
+                if (popup && popupContent && !popupContent.contains(e.target)) {
+                    closeModal();
+                }
+            });
+
+            window.submitEmail = async function() {
+                const email = document.getElementById('popup-email').value;
+                if (email) {
+                    try {
+                        const response = await fetch('https://api.fyenanceapp.com/v1/submit-email', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ email })
+                        });
+
+                        if (response.ok) {
+                            console.log('Email submitted:', email);
+                            // Store that user has submitted email
+                            localStorage.setItem('emailSubmitted', 'true');
+                            closeModal();
+                        } else {
+                            throw new Error('Failed to send email');
+                        }
+                    } catch (error) {
+                        alert('There was an error submitting your email. Please try again.');
+                        console.error('Error:', error);
+                    }
+                } else {
+                    alert('Please enter a valid email address.');
+                }
+            };
+        });
+    </script>
 
     <script>
         // Smooth scroll for navigation

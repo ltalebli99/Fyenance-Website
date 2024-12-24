@@ -52,7 +52,7 @@ nav {
 }
 
 main {
-    margin-top: 110px;
+    margin-top: 70px;
 }
 
 .hero-container {
@@ -1183,7 +1183,7 @@ footer {
     .nav-links {
         display: none; /* Hide by default on mobile */
         position: fixed;
-        top: 146px;
+        top: 75px;
         left: 0;
         right: 0;
         background: white;
@@ -2169,7 +2169,7 @@ p img {
     padding: 3rem 2rem;
     color: white;
     text-align: center;
-    margin-top: -4rem;
+    margin-top: -.5rem;
     margin-bottom: 2rem;
     position: relative;
     overflow: hidden;
@@ -2284,3 +2284,5 @@ p img {
 .cta-button-alt:hover {
     background-color: var(--primary-dark);
 }
+
+
