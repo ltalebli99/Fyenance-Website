@@ -150,22 +150,46 @@ class CookieConsent {
   window.claritySessionId = null;
 
   function initializeClarity() {
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "pdpgebigrf");
+    return new Promise((resolve) => {
+        // First clear any existing Clarity
+        window.clarity = undefined;
+        
+        // Initialize Clarity
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "pdpgebigrf");
 
-    // Wait for Clarity to initialize and get session ID
-    window.clarity("consent");
-    const checkClaritySession = setInterval(() => {
-      if (window.clarity && typeof window.clarity.getSessionId === 'function') {
-        window.claritySessionId = window.clarity.getSessionId();
-        clearInterval(checkClaritySession);
-        // Trigger session ID sync with other platforms
-        syncAnalyticsSessionId(window.claritySessionId);
-      }
-    }, 100);
+        // Wait for Clarity to initialize and get session ID
+        window.clarity("consent");
+        
+        const maxAttempts = 100; // 10 seconds maximum wait
+        let attempts = 0;
+        
+        const checkClaritySession = setInterval(() => {
+            attempts++;
+            
+            // More detailed logging
+            console.log('Clarity check attempt:', attempts, {
+                clarityExists: !!window.clarity,
+                getSessionIdExists: window.clarity && typeof window.clarity.getSessionId === 'function',
+                sessionId: window.clarity && typeof window.clarity.getSessionId === 'function' ? window.clarity.getSessionId() : null
+            });
+            
+            if (window.clarity && typeof window.clarity.getSessionId === 'function' && window.clarity.getSessionId()) {
+                window.claritySessionId = window.clarity.getSessionId();
+                clearInterval(checkClaritySession);
+                console.log('✅ Clarity fully initialized:', window.claritySessionId);
+                syncAnalyticsSessionId(window.claritySessionId);
+                resolve(window.claritySessionId);
+            } else if (attempts >= maxAttempts) {
+                console.warn('⚠️ Clarity initialization timed out after 10 seconds');
+                clearInterval(checkClaritySession);
+                resolve(null);
+            }
+        }, 100);
+    });
   }
 
   function syncAnalyticsSessionId(sessionId) {
