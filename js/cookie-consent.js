@@ -60,8 +60,8 @@ class CookieConsent {
       if (type === 'eu') {
         popup.innerHTML = `
           <div class="cookie-content">
-            <p>We need your consent to use analytics cookies. Just to get an idea of how many people are here. No funny business!</p>
-            View our <a href="privacy.html">Privacy Policy</a> here.
+            <p>We use cookies and tracking tools to understand how people use our site. This includes analytics (Google Analytics, Microsoft Clarity) and marketing pixels (Meta, Reddit) to measure our advertising effectiveness.</p>
+            <p>View our <a href="privacy.html">Privacy Policy</a> for details.</p>
             <div class="cookie-actions">
               <button class="cookie-btn cookie-btn-accept">Accept</button>
               <button class="cookie-btn cookie-btn-decline">Decline</button>
@@ -71,8 +71,8 @@ class CookieConsent {
       } else {
         popup.innerHTML = `
           <div class="cookie-content">
-            <p>We use analytics cookies. Opt out anytime. Just to get an idea of how many people are here. No funny business!</p>
-            View our <a href="privacy.html">Privacy Policy</a> here.
+            <p>We use cookies and tracking tools to understand site usage and measure marketing effectiveness. This includes analytics and advertising pixels from Google, Microsoft, Meta, and Reddit.</p>
+            <p>View our <a href="privacy.html">Privacy Policy</a> for details.</p>
             <div class="cookie-actions">
               <button class="cookie-btn cookie-btn-accept">Continue</button>
               <button class="cookie-btn cookie-btn-decline">Opt-out</button>
@@ -128,13 +128,9 @@ class CookieConsent {
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-21G8LJFM86');
-  
-      // Microsoft Clarity
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "pdpgebigrf");
+
+      // Initialize Clarity with session tracking
+      initializeClarity();
     }
   
     disableAnalytics() {
@@ -148,6 +144,50 @@ class CookieConsent {
       
       // Prevent future tracking
       window.clarity = function(){};
+    }
+  }
+  
+  let claritySessionId = null;
+
+  function initializeClarity() {
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "pdpgebigrf");
+
+    // Wait for Clarity to initialize and get session ID
+    window.clarity("consent");
+    const checkClaritySession = setInterval(() => {
+      if (window.clarity && typeof window.clarity.getSessionId === 'function') {
+        claritySessionId = window.clarity.getSessionId();
+        clearInterval(checkClaritySession);
+        // Trigger session ID sync with other platforms
+        syncAnalyticsSessionId(claritySessionId);
+      }
+    }, 100);
+  }
+
+  function syncAnalyticsSessionId(sessionId) {
+    // Send to Meta Pixel
+    if (typeof fbq === 'function') {
+      fbq('track', 'CustomizeProduct', {
+        clarity_session_id: sessionId
+      });
+    }
+
+    // Send to Reddit Pixel
+    if (typeof rdt === 'function') {
+      rdt('track', 'Custom', {
+        clarity_session_id: sessionId
+      });
+    }
+
+    // Send to Google Analytics
+    if (typeof gtag === 'function') {
+      gtag('event', 'clarity_session_start', {
+        clarity_session_id: sessionId
+      });
     }
   }
   

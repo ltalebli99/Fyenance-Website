@@ -9,11 +9,14 @@ function trackRedditPurchase(email, transactionId) {
     // Reinitialize with user data
     rdt('init', 'a2_g5tvpc00kw9p', {
         email: email,
-        externalId: transactionId
+        externalId: transactionId,
+        clarity_session_id: claritySessionId
     });
     
     // Add small delay to ensure initialization completes
     setTimeout(() => {
-        rdt('track', 'Purchase');
+        rdt('track', 'Purchase', {
+            clarity_session_id: claritySessionId
+        });
     }, 100);
 }

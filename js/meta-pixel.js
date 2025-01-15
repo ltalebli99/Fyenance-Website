@@ -13,20 +13,25 @@ fbq('track', 'PageView');
 // Function to track purchase with advanced matching
 function trackMetaPurchase(email, transactionId) {
     fbq('init', '8909592305800884', {
-        em: email
+        em: email,
+        external_id: claritySessionId
     });
     
     fbq('track', 'Purchase', {
         value: 12.00,
         currency: 'USD',
-        transaction_id: transactionId
+        transaction_id: transactionId,
+        clarity_session_id: claritySessionId
     });
 }
 
 // Function to track lead when email is entered
 function trackMetaLead(email) {
     fbq('init', '8909592305800884', {
-        em: email
+        em: email,
+        external_id: claritySessionId
     });
-    fbq('track', 'Lead');
+    fbq('track', 'Lead', {
+        clarity_session_id: claritySessionId
+    });
 }
