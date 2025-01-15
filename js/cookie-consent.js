@@ -150,46 +150,38 @@ class CookieConsent {
   window.claritySessionId = null;
 
   function initializeClarity() {
-    return new Promise((resolve) => {
-        // First clear any existing Clarity
-        window.clarity = undefined;
-        
-        // Initialize Clarity
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "pdpgebigrf");
+    // Don't reinitialize if Clarity is already there
+    if (window.clarity) {
+        console.log('Clarity already initialized');
+        return;
+    }
 
-        // Wait for Clarity to initialize and get session ID
-        window.clarity("consent");
-        
-        const maxAttempts = 100; // 10 seconds maximum wait
-        let attempts = 0;
-        
-        const checkClaritySession = setInterval(() => {
-            attempts++;
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "pdpgebigrf");
+
+    // Set consent
+    window.clarity("consent");
+    
+    // Try to get session ID after a short delay
+    setTimeout(() => {
+        try {
+            // Use the internal Clarity session ID if available
+            const clarityContext = window.clarity || {};
+            const sessionId = clarityContext.sessionId || 
+                            (typeof clarity.getSessionId === 'function' && clarity.getSessionId());
             
-            // More detailed logging
-            console.log('Clarity check attempt:', attempts, {
-                clarityExists: !!window.clarity,
-                getSessionIdExists: window.clarity && typeof window.clarity.getSessionId === 'function',
-                sessionId: window.clarity && typeof window.clarity.getSessionId === 'function' ? window.clarity.getSessionId() : null
-            });
-            
-            if (window.clarity && typeof window.clarity.getSessionId === 'function' && window.clarity.getSessionId()) {
-                window.claritySessionId = window.clarity.getSessionId();
-                clearInterval(checkClaritySession);
-                console.log('✅ Clarity fully initialized:', window.claritySessionId);
-                syncAnalyticsSessionId(window.claritySessionId);
-                resolve(window.claritySessionId);
-            } else if (attempts >= maxAttempts) {
-                console.warn('⚠️ Clarity initialization timed out after 10 seconds');
-                clearInterval(checkClaritySession);
-                resolve(null);
+            if (sessionId) {
+                window.claritySessionId = sessionId;
+                console.log('✅ Got Clarity session ID:', sessionId);
+                syncAnalyticsSessionId(sessionId);
             }
-        }, 100);
-    });
+        } catch (e) {
+            console.warn('Failed to get Clarity session ID:', e);
+        }
+    }, 2000);
   }
 
   function syncAnalyticsSessionId(sessionId) {
@@ -223,59 +215,23 @@ class CookieConsent {
   function debugTrackingIds() {
     console.group('🔍 Tracking IDs Debug');
     
-    // First check if user has consented
     const hasConsent = localStorage.getItem('fyenance_cookie_consent') === 'true';
     console.log('Cookie Consent Status:', hasConsent);
     
-    if (!hasConsent) {
-        console.log('⚠️ No cookie consent given - Clarity not initialized');
-        console.groupEnd();
-        return;
-    }
+    // Try to get session ID directly from Clarity context
+    const clarityContext = window.clarity || {};
+    const sessionId = clarityContext.sessionId || 
+                     (typeof clarity.getSessionId === 'function' && clarity.getSessionId());
     
-    // Check if Clarity exists
-    if (!window.clarity) {
-        console.log('⚠️ Clarity not loaded');
-        console.groupEnd();
-        return;
-    }
-    
-    // Check Clarity ID properly
-    const clarityId = typeof window.clarity.getSessionId === 'function' 
-        ? window.clarity.getSessionId() 
-        : null;
-    console.log('Clarity Session ID:', clarityId);
-    
-    // Check global variable
+    console.log('Direct Clarity Session ID:', sessionId);
     console.log('Global Clarity Session ID:', window.claritySessionId);
     
-    // Log initialization status
-    console.log('Clarity Initialization Status:', {
-        clarityExists: !!window.clarity,
-        getSessionIdExists: typeof window.clarity.getSessionId === 'function',
-        globalVarExists: typeof window.claritySessionId !== 'undefined'
-    });
-    
-    // Only send test events if we have a session ID
-    if (clarityId) {
-        // Send test event to Meta
-        if (typeof fbq === 'function') {
-            fbq('track', 'ViewContent', {
-                content_type: 'debug',
-                clarity_session_id: clarityId,
-                timestamp: Date.now()
-            });
-            console.log('Meta test event sent with Clarity ID');
-        }
-        
-        // Send test event to Reddit
-        if (typeof rdt === 'function') {
-            rdt('track', 'Custom', {
-                clarity_session_id: clarityId,
-                timestamp: Date.now()
-            });
-            console.log('Reddit test event sent with Clarity ID');
-        }
+    if (sessionId && typeof fbq === 'function') {
+        fbq('track', 'ViewContent', {
+            content_type: 'debug',
+            clarity_session_id: sessionId
+        });
+        console.log('✅ Sent test event to Meta');
     }
     
     console.groupEnd();
