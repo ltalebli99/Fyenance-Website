@@ -172,21 +172,21 @@ class CookieConsent {
     // Send to Meta Pixel
     if (typeof fbq === 'function') {
       fbq('track', 'CustomizeProduct', {
-        clarity_session_id: sessionId
+        clarity_session_id: window.claritySessionId
       });
     }
 
     // Send to Reddit Pixel
     if (typeof rdt === 'function') {
       rdt('track', 'Custom', {
-        clarity_session_id: sessionId
+        clarity_session_id: window.claritySessionId
       });
     }
 
     // Send to Google Analytics
     if (typeof gtag === 'function') {
       gtag('event', 'clarity_session_start', {
-        clarity_session_id: sessionId
+        clarity_session_id: window.claritySessionId
       });
     }
   }

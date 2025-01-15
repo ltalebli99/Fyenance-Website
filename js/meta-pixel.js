@@ -29,10 +29,10 @@ function trackMetaPurchase(email, transactionId) {
 function trackMetaLead(email) {
     fbq('init', '8909592305800884', {
         em: email,
-        external_id: claritySessionId
+        external_id: window.claritySessionId
     });
     fbq('track', 'Lead', {
-        clarity_session_id: claritySessionId
+        clarity_session_id: window.claritySessionId
     });
 }
 
@@ -40,12 +40,17 @@ function trackMetaLead(email) {
 function debugTrackingIds() {
     console.group('🔍 Tracking IDs Debug');
     
-    // Check Clarity ID
-    const clarityId = window.clarity ? window.clarity.sessionId : null;
+    // Check Clarity ID properly
+    const clarityId = window.clarity && typeof window.clarity.getSessionId === 'function' 
+        ? window.clarity.getSessionId() 
+        : null;
     console.log('Clarity Session ID:', clarityId);
     
+    // Check global variable
+    console.log('Global Clarity Session ID:', window.claritySessionId);
+    
     // Send test event to Meta
-    if (typeof fbq === 'function') {
+    if (typeof fbq === 'function' && clarityId) {
         fbq('track', 'ViewContent', {
             content_type: 'debug',
             clarity_session_id: clarityId,
@@ -55,7 +60,7 @@ function debugTrackingIds() {
     }
     
     // Send test event to Reddit
-    if (typeof rdt === 'function') {
+    if (typeof rdt === 'function' && clarityId) {
         rdt('track', 'Custom', {
             clarity_session_id: clarityId,
             timestamp: Date.now()
@@ -66,9 +71,32 @@ function debugTrackingIds() {
     console.groupEnd();
 }
 
-// Add keyboard shortcut to trigger debug
-document.addEventListener('keydown', (e) => {
+function ensureClarityInitialized() {
+    return new Promise((resolve) => {
+        if (window.clarity && typeof window.clarity.getSessionId === 'function') {
+            resolve();
+            return;
+        }
+
+        const checkInterval = setInterval(() => {
+            if (window.clarity && typeof window.clarity.getSessionId === 'function') {
+                clearInterval(checkInterval);
+                resolve();
+            }
+        }, 100);
+
+        // Timeout after 5 seconds
+        setTimeout(() => {
+            clearInterval(checkInterval);
+            resolve();
+        }, 5000);
+    });
+}
+
+// Update the debug keyboard shortcut handler
+document.addEventListener('keydown', async (e) => {
     if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+        await ensureClarityInitialized();
         debugTrackingIds();
     }
 });

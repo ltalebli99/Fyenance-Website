@@ -25,9 +25,9 @@ function trackRedditPurchase(email, transactionId) {
 function trackRedditLead(email) {
     rdt('init', 'a2_g5tvpc00kw9p', {
         email: email,
-        externalId: claritySessionId
+        externalId: window.claritySessionId
     });
     rdt('track', 'Lead', {
-        clarity_session_id: claritySessionId
+        clarity_session_id: window.claritySessionId
     });
 }
