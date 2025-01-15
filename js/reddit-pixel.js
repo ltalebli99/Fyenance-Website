@@ -20,3 +20,14 @@ function trackRedditPurchase(email, transactionId) {
         });
     }, 100);
 }
+
+// Function to track lead when email is entered
+function trackRedditLead(email) {
+    rdt('init', 'a2_g5tvpc00kw9p', {
+        email: email,
+        externalId: claritySessionId
+    });
+    rdt('track', 'Lead', {
+        clarity_session_id: claritySessionId
+    });
+}

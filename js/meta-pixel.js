@@ -35,3 +35,40 @@ function trackMetaLead(email) {
         clarity_session_id: claritySessionId
     });
 }
+
+// Add this debug function
+function debugTrackingIds() {
+    console.group('🔍 Tracking IDs Debug');
+    
+    // Check Clarity ID
+    const clarityId = window.clarity ? window.clarity.sessionId : null;
+    console.log('Clarity Session ID:', clarityId);
+    
+    // Send test event to Meta
+    if (typeof fbq === 'function') {
+        fbq('track', 'ViewContent', {
+            content_type: 'debug',
+            clarity_session_id: clarityId,
+            timestamp: Date.now()
+        });
+        console.log('Meta test event sent with Clarity ID');
+    }
+    
+    // Send test event to Reddit
+    if (typeof rdt === 'function') {
+        rdt('track', 'Custom', {
+            clarity_session_id: clarityId,
+            timestamp: Date.now()
+        });
+        console.log('Reddit test event sent with Clarity ID');
+    }
+    
+    console.groupEnd();
+}
+
+// Add keyboard shortcut to trigger debug
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+        debugTrackingIds();
+    }
+});
