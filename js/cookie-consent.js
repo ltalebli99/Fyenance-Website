@@ -179,15 +179,16 @@ class CookieConsent {
   function syncAnalyticsSessionId(sessionId) {
     // Send to Meta Pixel
     if (typeof fbq === 'function') {
-        fbq('track', 'CustomizeProduct', {
+        fbq('track', 'ViewContent', {
             session_id: sessionId
         });
     }
 
     // Send to Reddit Pixel
     if (typeof rdt === 'function') {
-        rdt('track', 'Custom', {
-            session_id: sessionId
+        rdt('track', 'ViewPage', {
+            session_id: sessionId,
+            event_type: 'session_start'
         });
     }
 
@@ -202,84 +203,5 @@ class CookieConsent {
   // Initialize cookie consent system
   document.addEventListener('DOMContentLoaded', () => {
     new CookieConsent();
-  });
-
-  function debugTrackingIds() {
-    console.group('🔍 Session Tracking Debug');
-    
-    // Check cookie consent status
-    const hasConsent = localStorage.getItem('fyenance_cookie_consent') === 'true';
-    console.log('Cookie Consent Status:', hasConsent ? '✅ Accepted' : '❌ Not Accepted');
-    
-    // Check session ID
-    console.log('Session ID:', {
-        id: window.fyenanceSessionId,
-        storedSession: sessionStorage.getItem('fyenance_session_id'),
-        matches: window.fyenanceSessionId === sessionStorage.getItem('fyenance_session_id') ? '✅' : '❌'
-    });
-    
-    // Check analytics platforms
-    console.log('Analytics Platforms:', {
-        clarity: typeof window.clarity === 'function' ? '✅' : '❌',
-        meta: typeof fbq === 'function' ? '✅' : '❌',
-        reddit: typeof rdt === 'function' ? '✅' : '❌',
-        gtag: typeof gtag === 'function' ? '✅' : '❌'
-    });
-
-    // Send test events if consent is given
-    if (hasConsent && window.fyenanceSessionId) {
-        // Test Meta Pixel
-        if (typeof fbq === 'function') {
-            fbq('track', 'ViewContent', {
-                content_type: 'debug',
-                session_id: window.fyenanceSessionId,
-                timestamp: Date.now()
-            });
-            console.log('✅ Sent test event to Meta');
-        }
-        
-        // Test Reddit Pixel
-        if (typeof rdt === 'function') {
-            rdt('track', 'Custom', {
-                session_id: window.fyenanceSessionId,
-                timestamp: Date.now()
-            });
-            console.log('✅ Sent test event to Reddit');
-        }
-        
-        // Test Clarity
-        if (typeof window.clarity === 'function') {
-            window.clarity("event", "debug_check", {
-                session_id: window.fyenanceSessionId,
-                timestamp: Date.now()
-            });
-            console.log('✅ Sent test event to Clarity');
-        }
-        
-        // Test Google Analytics
-        if (typeof gtag === 'function') {
-            gtag('event', 'debug_check', {
-                session_id: window.fyenanceSessionId,
-                timestamp: Date.now()
-            });
-            console.log('✅ Sent test event to Google Analytics');
-        }
-    }
-    
-    // Instructions for marketing team
-    console.log('\n📋 Marketing Team Instructions:');
-    console.log('1. Session ID should persist across page refreshes');
-    console.log('2. Session ID should reset when closing/reopening browser');
-    console.log('3. All analytics platforms should show ✅');
-    console.log('4. Test events should appear in respective platforms');
-    
-    console.groupEnd();
-  }
-
-  // Add keyboard shortcut listener
-  document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-        debugTrackingIds();
-    }
   });
 
