@@ -14,14 +14,14 @@ fbq('track', 'PageView');
 function trackMetaPurchase(email, transactionId) {
     fbq('init', '8909592305800884', {
         em: email,
-        external_id: claritySessionId
+        external_id: window.claritySessionId
     });
     
     fbq('track', 'Purchase', {
         value: 12.00,
         currency: 'USD',
         transaction_id: transactionId,
-        clarity_session_id: claritySessionId
+        clarity_session_id: window.claritySessionId
     });
 }
 

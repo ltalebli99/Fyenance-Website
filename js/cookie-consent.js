@@ -147,7 +147,7 @@ class CookieConsent {
     }
   }
   
-  let claritySessionId = null;
+  window.claritySessionId = null;
 
   function initializeClarity() {
     (function(c,l,a,r,i,t,y){
@@ -160,10 +160,10 @@ class CookieConsent {
     window.clarity("consent");
     const checkClaritySession = setInterval(() => {
       if (window.clarity && typeof window.clarity.getSessionId === 'function') {
-        claritySessionId = window.clarity.getSessionId();
+        window.claritySessionId = window.clarity.getSessionId();
         clearInterval(checkClaritySession);
         // Trigger session ID sync with other platforms
-        syncAnalyticsSessionId(claritySessionId);
+        syncAnalyticsSessionId(window.claritySessionId);
       }
     }, 100);
   }

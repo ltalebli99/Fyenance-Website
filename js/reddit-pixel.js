@@ -10,13 +10,13 @@ function trackRedditPurchase(email, transactionId) {
     rdt('init', 'a2_g5tvpc00kw9p', {
         email: email,
         externalId: transactionId,
-        clarity_session_id: claritySessionId
+        clarity_session_id: window.claritySessionId
     });
     
     // Add small delay to ensure initialization completes
     setTimeout(() => {
         rdt('track', 'Purchase', {
-            clarity_session_id: claritySessionId
+            clarity_session_id: window.claritySessionId
         });
     }, 100);
 }
