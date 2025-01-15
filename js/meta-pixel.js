@@ -72,3 +72,33 @@ document.addEventListener('keydown', (e) => {
         debugTrackingIds();
     }
 });
+
+// Add this debug UI code
+function addDebugButton() {
+    // Only show debug in development or if debug parameter exists
+    const isDebugMode = window.location.hostname === 'localhost' || 
+                       window.location.hostname === '127.0.0.1' ||
+                       window.location.search.includes('debug=true');
+    
+    if (isDebugMode) {
+        const debugButton = document.createElement('button');
+        debugButton.innerHTML = '🔍 Debug Tracking';
+        debugButton.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 10000;
+            padding: 8px 16px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: monospace;
+        `;
+        debugButton.onclick = debugTrackingIds;
+        document.body.appendChild(debugButton);
+    }
+}
+
+// Call this when document is ready
+document.addEventListener('DOMContentLoaded', addDebugButton);
