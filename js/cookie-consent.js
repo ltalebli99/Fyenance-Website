@@ -195,3 +195,71 @@ class CookieConsent {
   document.addEventListener('DOMContentLoaded', () => {
     new CookieConsent();
   });
+
+  function debugTrackingIds() {
+    console.group('🔍 Tracking IDs Debug');
+    
+    // First check if user has consented
+    const hasConsent = localStorage.getItem('fyenance_cookie_consent') === 'true';
+    console.log('Cookie Consent Status:', hasConsent);
+    
+    if (!hasConsent) {
+        console.log('⚠️ No cookie consent given - Clarity not initialized');
+        console.groupEnd();
+        return;
+    }
+    
+    // Check if Clarity exists
+    if (!window.clarity) {
+        console.log('⚠️ Clarity not loaded');
+        console.groupEnd();
+        return;
+    }
+    
+    // Check Clarity ID properly
+    const clarityId = typeof window.clarity.getSessionId === 'function' 
+        ? window.clarity.getSessionId() 
+        : null;
+    console.log('Clarity Session ID:', clarityId);
+    
+    // Check global variable
+    console.log('Global Clarity Session ID:', window.claritySessionId);
+    
+    // Log initialization status
+    console.log('Clarity Initialization Status:', {
+        clarityExists: !!window.clarity,
+        getSessionIdExists: typeof window.clarity.getSessionId === 'function',
+        globalVarExists: typeof window.claritySessionId !== 'undefined'
+    });
+    
+    // Only send test events if we have a session ID
+    if (clarityId) {
+        // Send test event to Meta
+        if (typeof fbq === 'function') {
+            fbq('track', 'ViewContent', {
+                content_type: 'debug',
+                clarity_session_id: clarityId,
+                timestamp: Date.now()
+            });
+            console.log('Meta test event sent with Clarity ID');
+        }
+        
+        // Send test event to Reddit
+        if (typeof rdt === 'function') {
+            rdt('track', 'Custom', {
+                clarity_session_id: clarityId,
+                timestamp: Date.now()
+            });
+            console.log('Reddit test event sent with Clarity ID');
+        }
+    }
+    
+    console.groupEnd();
+  }
+
+  // Add keyboard shortcut listener
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+        debugTrackingIds();
+    }
+  });
