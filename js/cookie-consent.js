@@ -147,10 +147,12 @@ class CookieConsent {
     }
   }
   
-  window.claritySessionId = null;
+  // Generate or retrieve session ID
+  window.fyenanceSessionId = sessionStorage.getItem('fyenance_session_id') || crypto.randomUUID();
+  // Store it in sessionStorage
+  sessionStorage.setItem('fyenance_session_id', window.fyenanceSessionId);
 
   function initializeClarity() {
-    // Don't reinitialize if Clarity is already there
     if (window.clarity) {
         console.log('Clarity already initialized');
         return;
@@ -162,48 +164,38 @@ class CookieConsent {
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "pdpgebigrf");
 
-    // Set consent
     window.clarity("consent");
     
-    // Try to get session ID after a short delay
-    setTimeout(() => {
-        try {
-            // Use the internal Clarity session ID if available
-            const clarityContext = window.clarity || {};
-            const sessionId = clarityContext.sessionId || 
-                            (typeof clarity.getSessionId === 'function' && clarity.getSessionId());
-            
-            if (sessionId) {
-                window.claritySessionId = sessionId;
-                console.log('✅ Got Clarity session ID:', sessionId);
-                syncAnalyticsSessionId(sessionId);
-            }
-        } catch (e) {
-            console.warn('Failed to get Clarity session ID:', e);
-        }
-    }, 2000);
+    // Send our session ID to Clarity
+    window.clarity("set", "session_id", window.fyenanceSessionId);
+    window.clarity("event", "session_start", {
+        session_id: window.fyenanceSessionId
+    });
+    
+    // Use our own session ID for all other analytics
+    syncAnalyticsSessionId(window.fyenanceSessionId);
   }
 
   function syncAnalyticsSessionId(sessionId) {
     // Send to Meta Pixel
     if (typeof fbq === 'function') {
-      fbq('track', 'CustomizeProduct', {
-        clarity_session_id: window.claritySessionId
-      });
+        fbq('track', 'CustomizeProduct', {
+            session_id: sessionId
+        });
     }
 
     // Send to Reddit Pixel
     if (typeof rdt === 'function') {
-      rdt('track', 'Custom', {
-        clarity_session_id: window.claritySessionId
-      });
+        rdt('track', 'Custom', {
+            session_id: sessionId
+        });
     }
 
     // Send to Google Analytics
     if (typeof gtag === 'function') {
-      gtag('event', 'clarity_session_start', {
-        clarity_session_id: window.claritySessionId
-      });
+        gtag('event', 'session_start', {
+            session_id: sessionId
+        });
     }
   }
   
@@ -213,26 +205,73 @@ class CookieConsent {
   });
 
   function debugTrackingIds() {
-    console.group('🔍 Tracking IDs Debug');
+    console.group('🔍 Session Tracking Debug');
     
+    // Check cookie consent status
     const hasConsent = localStorage.getItem('fyenance_cookie_consent') === 'true';
-    console.log('Cookie Consent Status:', hasConsent);
+    console.log('Cookie Consent Status:', hasConsent ? '✅ Accepted' : '❌ Not Accepted');
     
-    // Try to get session ID directly from Clarity context
-    const clarityContext = window.clarity || {};
-    const sessionId = clarityContext.sessionId || 
-                     (typeof clarity.getSessionId === 'function' && clarity.getSessionId());
+    // Check session ID
+    console.log('Session ID:', {
+        id: window.fyenanceSessionId,
+        storedSession: sessionStorage.getItem('fyenance_session_id'),
+        matches: window.fyenanceSessionId === sessionStorage.getItem('fyenance_session_id') ? '✅' : '❌'
+    });
     
-    console.log('Direct Clarity Session ID:', sessionId);
-    console.log('Global Clarity Session ID:', window.claritySessionId);
-    
-    if (sessionId && typeof fbq === 'function') {
-        fbq('track', 'ViewContent', {
-            content_type: 'debug',
-            clarity_session_id: sessionId
-        });
-        console.log('✅ Sent test event to Meta');
+    // Check analytics platforms
+    console.log('Analytics Platforms:', {
+        clarity: typeof window.clarity === 'function' ? '✅' : '❌',
+        meta: typeof fbq === 'function' ? '✅' : '❌',
+        reddit: typeof rdt === 'function' ? '✅' : '❌',
+        gtag: typeof gtag === 'function' ? '✅' : '❌'
+    });
+
+    // Send test events if consent is given
+    if (hasConsent && window.fyenanceSessionId) {
+        // Test Meta Pixel
+        if (typeof fbq === 'function') {
+            fbq('track', 'ViewContent', {
+                content_type: 'debug',
+                session_id: window.fyenanceSessionId,
+                timestamp: Date.now()
+            });
+            console.log('✅ Sent test event to Meta');
+        }
+        
+        // Test Reddit Pixel
+        if (typeof rdt === 'function') {
+            rdt('track', 'Custom', {
+                session_id: window.fyenanceSessionId,
+                timestamp: Date.now()
+            });
+            console.log('✅ Sent test event to Reddit');
+        }
+        
+        // Test Clarity
+        if (typeof window.clarity === 'function') {
+            window.clarity("event", "debug_check", {
+                session_id: window.fyenanceSessionId,
+                timestamp: Date.now()
+            });
+            console.log('✅ Sent test event to Clarity');
+        }
+        
+        // Test Google Analytics
+        if (typeof gtag === 'function') {
+            gtag('event', 'debug_check', {
+                session_id: window.fyenanceSessionId,
+                timestamp: Date.now()
+            });
+            console.log('✅ Sent test event to Google Analytics');
+        }
     }
+    
+    // Instructions for marketing team
+    console.log('\n📋 Marketing Team Instructions:');
+    console.log('1. Session ID should persist across page refreshes');
+    console.log('2. Session ID should reset when closing/reopening browser');
+    console.log('3. All analytics platforms should show ✅');
+    console.log('4. Test events should appear in respective platforms');
     
     console.groupEnd();
   }
@@ -243,3 +282,4 @@ class CookieConsent {
         debugTrackingIds();
     }
   });
+

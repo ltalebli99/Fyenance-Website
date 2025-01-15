@@ -14,14 +14,14 @@ fbq('track', 'PageView');
 function trackMetaPurchase(email, transactionId) {
     fbq('init', '8909592305800884', {
         em: email,
-        external_id: window.claritySessionId
+        external_id: window.fyenanceSessionId
     });
     
     fbq('track', 'Purchase', {
         value: 12.00,
         currency: 'USD',
         transaction_id: transactionId,
-        clarity_session_id: window.claritySessionId
+        session_id: window.fyenanceSessionId
     });
 }
 
@@ -29,9 +29,9 @@ function trackMetaPurchase(email, transactionId) {
 function trackMetaLead(email) {
     fbq('init', '8909592305800884', {
         em: email,
-        external_id: window.claritySessionId
+        external_id: window.fyenanceSessionId
     });
     fbq('track', 'Lead', {
-        clarity_session_id: window.claritySessionId
+        session_id: window.fyenanceSessionId
     });
 }

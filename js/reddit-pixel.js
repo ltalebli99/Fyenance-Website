@@ -6,17 +6,15 @@ rdt('track', 'PageVisit');
 
 // Function to track purchase with advanced matching
 function trackRedditPurchase(email, transactionId) {
-    // Reinitialize with user data
     rdt('init', 'a2_g5tvpc00kw9p', {
         email: email,
         externalId: transactionId,
-        clarity_session_id: window.claritySessionId
+        session_id: window.fyenanceSessionId
     });
     
-    // Add small delay to ensure initialization completes
     setTimeout(() => {
         rdt('track', 'Purchase', {
-            clarity_session_id: window.claritySessionId
+            session_id: window.fyenanceSessionId
         });
     }, 100);
 }
@@ -25,9 +23,9 @@ function trackRedditPurchase(email, transactionId) {
 function trackRedditLead(email) {
     rdt('init', 'a2_g5tvpc00kw9p', {
         email: email,
-        externalId: window.claritySessionId
+        externalId: window.fyenanceSessionId
     });
     rdt('track', 'Lead', {
-        clarity_session_id: window.claritySessionId
+        session_id: window.fyenanceSessionId
     });
 }
