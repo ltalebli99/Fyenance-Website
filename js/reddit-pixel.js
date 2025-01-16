@@ -21,7 +21,9 @@ function trackRedditPurchase(email, transactionId) {
             currency: 'USD',
             transaction_id: transactionId,
             session_id: window.fyenanceSessionId,
-            item_count: 1
+            item_count: 1,
+            session: window.fyenanceSessionId,
+            em: email
         });
     }, 100);
 }
@@ -30,13 +32,17 @@ function trackRedditPurchase(email, transactionId) {
 function trackRedditAddToCart(email) {
     rdt('init', 'a2_g5tvpc00kw9p', {
         email: email,
-        external_id: window.fyenanceSessionId
+        external_id: window.fyenanceSessionId,
+        session_id: window.fyenanceSessionId,
+        session: window.fyenanceSessionId
     });
     rdt('track', 'AddToCart', {
         value: 12.00,
         currency: 'USD',
         item_count: 1,
-        session_id: window.fyenanceSessionId
+        session_id: window.fyenanceSessionId,
+        session: window.fyenanceSessionId,
+        em: email
     });
 }
 
@@ -49,6 +55,8 @@ function trackRedditLead(email) {
     rdt('track', 'Lead', {
         value: 12.00,
         currency: 'USD',
-        session_id: window.fyenanceSessionId
+        session_id: window.fyenanceSessionId,
+        session: window.fyenanceSessionId,
+        em: email
     });
 }
