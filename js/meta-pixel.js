@@ -8,7 +8,9 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 
 fbq('init', '8909592305800884');
-fbq('track', 'PageView');
+fbq('track', 'PageView', {
+    session_id: window.fyenanceSessionId
+});
 
 // Function to track purchase with advanced matching
 function trackMetaPurchase(email, transactionId) {
@@ -21,6 +23,19 @@ function trackMetaPurchase(email, transactionId) {
         value: 12.00,
         currency: 'USD',
         transaction_id: transactionId,
+        session_id: window.fyenanceSessionId,
+        content_type: 'product',
+        content_name: 'Fyenance License'
+    });
+}
+
+// Function to track add to cart
+function trackMetaAddToCart() {
+    fbq('track', 'AddToCart', {
+        value: 12.00,
+        currency: 'USD',
+        content_type: 'product',
+        content_name: 'Fyenance License',
         session_id: window.fyenanceSessionId
     });
 }
@@ -32,6 +47,10 @@ function trackMetaLead(email) {
         external_id: window.fyenanceSessionId
     });
     fbq('track', 'Lead', {
+        value: 12.00,
+        currency: 'USD',
+        content_type: 'product',
+        content_name: 'Fyenance License',
         session_id: window.fyenanceSessionId
     });
 }

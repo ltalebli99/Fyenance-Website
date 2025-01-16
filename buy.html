@@ -102,7 +102,7 @@
             
             // Track email lead
             trackMetaLead(email);
-            rdt('track', 'AddToCart');
+            trackRedditAddToCart(email);
 
             try {
                 // Only track if gtag exists (meaning user accepted analytics cookies)

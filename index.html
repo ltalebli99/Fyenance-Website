@@ -823,10 +823,14 @@
             heroButtons.forEach(selector => {
                 document.querySelectorAll(selector).forEach(button => {
                     button.addEventListener('click', () => {
-                        rdt('track', 'Lead');
+                        trackRedditLead();
+                        trackMetaLead();
                         fbq('track', 'ViewContent', {
                             content_name: 'Buy Page View',
-                            content_type: 'product'
+                            content_type: 'product',
+                            value: 12.00,
+                            currency: 'USD',
+                            session_id: window.fyenanceSessionId
                         });
                     });
                 });
