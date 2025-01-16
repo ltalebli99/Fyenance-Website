@@ -36,7 +36,7 @@ function trackRedditAddToCart(email) {
         value: 12.00,
         currency: 'USD',
         item_count: 1,
-        session_id: window.fyenanceSessionId,
+        session_id: window.fyenanceSessionId
     });
 }
 

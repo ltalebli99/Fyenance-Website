@@ -30,7 +30,11 @@ function trackMetaPurchase(email, transactionId) {
 }
 
 // Function to track add to cart
-function trackMetaAddToCart() {
+function trackMetaAddToCart(email) {
+    fbq('init', '8909592305800884', {
+        em: email,
+        external_id: window.fyenanceSessionId
+    });
     fbq('track', 'AddToCart', {
         value: 12.00,
         currency: 'USD',
