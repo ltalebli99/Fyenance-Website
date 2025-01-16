@@ -7,6 +7,7 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 
+// Initialize once with default parameters
 fbq('init', '8909592305800884');
 fbq('track', 'PageView', {
     session_id: window.fyenanceSessionId
@@ -14,47 +15,38 @@ fbq('track', 'PageView', {
 
 // Function to track purchase with advanced matching
 function trackMetaPurchase(email, transactionId) {
-    fbq('init', '8909592305800884', {
-        em: email,
-        external_id: window.fyenanceSessionId
-    });
-    
+    // Track the purchase event
     fbq('track', 'Purchase', {
         value: 12.00,
         currency: 'USD',
         transaction_id: transactionId,
         session_id: window.fyenanceSessionId,
         content_type: 'product',
-        content_name: 'Fyenance License'
+        content_name: 'Fyenance License',
+        em: email
     });
 }
 
 // Function to track add to cart
 function trackMetaAddToCart(email) {
-    fbq('init', '8909592305800884', {
-        em: email,
-        external_id: window.fyenanceSessionId
-    });
     fbq('track', 'AddToCart', {
         value: 12.00,
         currency: 'USD',
         content_type: 'product',
         content_name: 'Fyenance License',
-        session_id: window.fyenanceSessionId
+        session_id: window.fyenanceSessionId,
+        em: email
     });
 }
 
 // Function to track lead when email is entered
 function trackMetaLead(email) {
-    fbq('init', '8909592305800884', {
-        em: email,
-        external_id: window.fyenanceSessionId
-    });
     fbq('track', 'Lead', {
         value: 12.00,
         currency: 'USD',
         content_type: 'product',
         content_name: 'Fyenance License',
-        session_id: window.fyenanceSessionId
+        session_id: window.fyenanceSessionId,
+        em: email
     });
 }
