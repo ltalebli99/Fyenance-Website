@@ -2,19 +2,25 @@
 
 // Initial page setup
 rdt('init','a2_g5tvpc00kw9p');
-rdt('track', 'PageVisit');
+rdt('track', 'PageVisit', {
+    session_id: window.fyenanceSessionId
+});
 
 // Function to track purchase with advanced matching
 function trackRedditPurchase(email, transactionId) {
     rdt('init', 'a2_g5tvpc00kw9p', {
         email: email,
-        externalId: transactionId,
+        external_id: transactionId,
         session_id: window.fyenanceSessionId
     });
     
     setTimeout(() => {
         rdt('track', 'Purchase', {
-            session_id: window.fyenanceSessionId
+            value: 12.00,
+            currency: 'USD',
+            transaction_id: transactionId,
+            session_id: window.fyenanceSessionId,
+            item_count: 1
         });
     }, 100);
 }
@@ -23,9 +29,11 @@ function trackRedditPurchase(email, transactionId) {
 function trackRedditLead(email) {
     rdt('init', 'a2_g5tvpc00kw9p', {
         email: email,
-        externalId: window.fyenanceSessionId
+        external_id: window.fyenanceSessionId
     });
     rdt('track', 'Lead', {
-        session_id: window.fyenanceSessionId
+        session_id: window.fyenanceSessionId,
+        value: 12.00,
+        currency: 'USD'
     });
 }
