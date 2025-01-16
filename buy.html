@@ -101,7 +101,9 @@
             }
             
             // Track email lead and add to cart
-            trackMetaAddToCart();
+            trackMetaLead(email);
+            trackMetaAddToCart(email);
+            trackRedditLead(email);
             trackRedditAddToCart(email);
 
             try {
