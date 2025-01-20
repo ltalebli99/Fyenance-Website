@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/buy.css">
     <link rel="stylesheet" href="css/cookie-consent.css">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.ico">
     <script src="https://js.stripe.com/v3/"></script>
@@ -32,44 +33,161 @@
     </header>
 
     <main>
-        <section class="pricing" style="padding-top: 2rem;">
-            <div class="pricing-card">
-                <div class="pricing-left">
-                    <h2>Complete Your Purchase</h2>
-                    <div class="price">
-                        <span class="amount">$12</span>
-                        <span class="price-note">one-time payment</span>
-                    </div>
-                    <div class="price-increase-warning">
-                        <i class="fas fa-clock"></i>
-                        Price increases to $25 after early bird ends
-                    </div>
-                </div>
-                
-                <div class="purchase-form">
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" required placeholder="Where should we send your license?">
-                    </div>
-                    
-                    <div class="terms-acceptance">
-                        <p>By making a purchase, you agree to our <a href="terms.html">Terms of Service</a> and acknowledge that we may send you emails about product updates and important announcements.</p>
-                    </div>
-                    
-                    <button id="purchase-btn" class="cta-button">
-                        <i class="fas fa-lock"></i> Complete Purchase
-                    </button>
-                    
-                    <div id="loading" class="loading">
-                        <i class="fas fa-spinner fa-spin"></i> Processing your payment...
-                    </div>
-                    
-                    <p class="guarantee">30-day money-back guarantee. No questions asked.</p>
-                </div>
-                
-            </div>
+        <section class="pricing">
+            <div class="pricing-card-container">
+                <div class="pricing-card">
+                    <div class="pricing-left">
+                        <h2>Get Started with Fyenance Today</h2>
+                        
 
-            <!-- s -->
+                        <div class="price">
+                            <span class="amount">$12</span>
+                            <div class="price-note-container">
+                                <span class="price-note">one-time payment</span>
+                                <span class="original-price">$15</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Add value props -->
+                        <div class="value-props-buy">
+                            <div class="prop"><i class="fas fa-check"></i> Lifetime access</div>
+                            <div class="prop"><i class="fas fa-check"></i> Free updates</div>
+                            <div class="prop"><i class="fas fa-check"></i> Premium support</div>
+                        </div>
+
+                        <div class="price-increase-warning">
+                            <div class="price-increase-warning-title"><i class="fas fa-clock"></i> 
+                                <strong>Limited time:</strong>
+                            </div>
+                            <div class="price-increase-warning-text">Increases to $15 after early bird ends</div>
+                        </div>
+                    </div>
+                    
+                    <div class="purchase-form">
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required placeholder="Where should we send your license?">
+                        </div>
+                        
+                        <div class="terms-acceptance">
+                            <p>By making a purchase, you agree to our <a href="terms.html">Terms of Service</a> and acknowledge that we may send you emails about product updates and important announcements.</p>
+                        </div>
+
+                        <div class="purchase-button-container">
+                            <button id="purchase-btn" class="cta-button">
+                                <i class="fas fa-lock"></i> Get Instant Access
+                            </button>
+
+                            <div id="loading" class="loading">
+                                <i class="fas fa-spinner fa-spin"></i> Redirecting to payment...
+                            </div>
+                        </div>
+                        
+                        <p class="guarantee"><i class="fas fa-shield-alt"></i> 30-day money-back guarantee. No questions asked.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add Trust Indicators Section -->
+        <section class="trust-indicators">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <i class="fas fa-users"></i>
+                    <h3>Join 100+ Users</h3>
+                    <p>Who trust Fyenance for their personal finance management</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure & Private</h3>
+                    <p>Your financial data never leaves your device</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Instant Access</h3>
+                    <p>Get started immediately after purchase</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add FAQ Section -->
+        <section class="faq-section-wide">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3><i class="fas fa-question-circle"></i> How long does my license last?</h3>
+                    <p>Your Fyenance license is valid for life. Once you purchase, you'll receive future updates at no additional cost.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fas fa-question-circle"></i> Can I use Fyenance on multiple devices?</h3>
+                    <p>Yes! Your license allows you to use Fyenance on up to 2 devices simultaneously.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fas fa-question-circle"></i> What if I'm not satisfied?</h3>
+                    <p>We offer a no-questions-asked 30-day money-back guarantee. If you're not completely satisfied, just email us for a full refund.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fas fa-question-circle"></i> What payment methods do you accept?</h3>
+                    <p>We accept all major credit cards, debit cards, and PayPal. All payments are processed securely through Stripe.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Replace Testimonials Section -->
+        <section class="testimonials-section">
+            <h2>What People Are Saying</h2>
+            <div class="testimonials-wall">
+                <div class="testimonial-pill">
+                    <i class="fas fa-star"></i>
+                    "Really clean interface"
+                </div>
+                <div class="testimonial-pill">
+                    <i class="fas fa-star"></i>
+                    "Super easy to use"
+                </div>
+                <div class="testimonial-pill highlight">
+                    <i class="fas fa-star"></i>
+                    "I love not paying a subscription!"
+                </div>
+                <div class="testimonial-pill">
+                    <i class="fas fa-star"></i>
+                    "Like my spreadsheets but with a better UI"
+                </div>
+                <div class="testimonial-pill highlight">
+                    <i class="fas fa-star"></i>
+                    "Very focused on the right things"
+                </div>
+                <div class="testimonial-pill">
+                    <i class="fas fa-star"></i>
+                    "Exactly what I needed"
+                </div>
+                <div class="testimonial-pill">
+                    <i class="fas fa-star"></i>
+                    "Simple but powerful"
+                </div>
+                <div class="testimonial-pill highlight">
+                    <i class="fas fa-star"></i>
+                    "Worth every penny"
+                </div>
+                <div class="testimonial-pill">
+                    <i class="fas fa-star"></i>
+                    "Great customer support"
+                </div>
+            </div>
+        </section>
+
+        <!-- Add Final CTA Section -->
+        <section class="final-cta">
+            <h2>Ready for your financial peace of mind? 🧘</h2>
+            <p>Join over 100 users transorming their financial habits with Fyenance</p>
+            <a href="#top" class="cta-button">
+                <i class="fas fa-lock"></i> Get Started Now - $12
+            </a>
+            <div class="guarantees">
+                <p class="guarantee-text"><i class="fas fa-sync"></i> Free updates for life</p>
+                <p class="guarantee-text"><i class="fas fa-headset"></i> Priority email support</p>
+            </div>
         </section>
     </main>
 

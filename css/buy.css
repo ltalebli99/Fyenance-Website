@@ -1,0 +1,540 @@
+.amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.price-note {
+    color: #666;
+    font-size: 1rem;
+}
+
+.original-price {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 1.5rem;
+}
+
+.value-props-buy {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-size: .875rem;
+}
+
+.prop {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0.75rem 0;
+    color: #1a1a1a;
+}
+
+.prop i {
+    color: var(--primary);
+}
+
+.testimonial {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.testimonial-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.loading {
+    display: none;
+    text-align: center;
+    color: #666;
+}
+
+.loading.visible {
+    display: block;
+}
+
+.guarantee {
+    text-align: center;
+    color: #666;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* FAQ Section */
+.faq-section {
+    margin-top: 3rem;
+    border-top: 1px solid #eee;
+    padding-top: 2rem;
+}
+
+.faq-section h3 {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.faq-item {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.faq-item h4 {
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.faq-item p {
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Trust Indicators Section */
+.trust-indicators {
+    padding: 4rem 2rem;
+    background: white;
+}
+
+.trust-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 0rem 2rem;
+}
+
+.trust-item {
+    text-align: center;
+    padding: 2rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.025);
+
+}
+
+.trust-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.trust-item i {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.trust-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+
+.trust-item p {
+    color: #666;
+}
+
+/* FAQ Section Wide */
+.faq-section-wide {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.faq-section-wide h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    color: #1a1a1a;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.faq-grid .faq-item {
+    background: white;
+    border: 1px solid #eee;
+    transition: transform 0.2s;
+}
+
+.faq-grid .faq-item:hover {
+    transform: translateY(-2px);
+}
+
+.faq-item h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #1a1a1a;
+}
+
+.faq-item i {
+    color: var(--primary);
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    padding: 4rem 2rem;
+    background: #ffffff;
+}
+
+.testimonials-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    color: #1a1a1a;
+}
+
+.testimonials-wall {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.testimonial-pill {
+    background: #f8f9fa;
+    padding: 0.75rem 1.25rem;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.testimonial-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.testimonial-pill i {
+    color: #ffd700;
+    font-size: 0.875rem;
+}
+
+.testimonial-pill.highlight {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.testimonial-pill.highlight i {
+    color: white;
+}
+
+/* Final CTA Section */
+.final-cta {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.final-cta h2 {
+    font-size: 2rem;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+}
+
+.final-cta p {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.guarantees {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.guarantee-text {
+    margin-top: 1rem;
+    color: #666;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Pricing Section */
+
+    .pricing {
+        padding: 2rem 2rem !important;
+    }
+
+    .purchase-form {
+        padding: 0rem !important;
+    }
+
+    .pricing-card {
+        padding: 1rem;
+    }
+    
+    .amount {
+        font-size: 2.5rem;
+    }
+
+    .price {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0rem !important;
+    }
+
+    .price-note-container {
+        margin-top: -3rem;
+        margin-bottom: 1rem;
+    }
+
+    .price-increase-warning {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0rem;
+    }
+
+    .price-increase-warning-title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .pricing-card-container {
+        padding: 0rem !important;
+    }
+
+    .value-props-buy {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .prop {
+        margin: 0rem !important;
+    }
+
+    .purchase-button-container {
+        flex-direction: column;
+    }
+
+    /* Trust Indicators */
+    .trust-indicators {
+        padding: 2rem 2rem;
+    }
+
+    .trust-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0;
+    }
+
+    .trust-item {
+        padding: 1.5rem;
+    }
+
+    /* FAQ Section */
+    .faq-section-wide {
+        padding: 2rem 2rem;
+    }
+
+    .faq-section-wide h2 {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .faq-grid .faq-item {
+        padding: 1rem;
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+        padding: 2rem 2rem;
+    }
+
+    .testimonials-section h2 {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .testimonials-wall {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .testimonial-pill {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+        width: calc(50% - 0.5rem);
+        justify-content: center;
+    }
+
+    /* Final CTA Section */
+    .final-cta {
+        padding: 2rem 2rem;
+    }
+
+    .final-cta h2 {
+        font-size: 1.75rem;
+    }
+
+    .guarantees {
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    /* General Text Adjustments */
+    p {
+        font-size: 0.9375rem;
+    }
+
+    .price-note {
+        font-size: 0.875rem;
+    }
+
+    .original-price {
+        font-size: 1.25rem;
+    }
+}
+
+/* Additional breakpoint for extra small devices */
+@media (max-width: 480px) {
+    .amount {
+        font-size: 2rem;
+    }
+
+    .testimonial-pill {
+        width: 100%;
+    }
+
+    .trust-item {
+        padding: 1rem;
+    }
+
+    .trust-item i {
+        font-size: 2rem;
+    }
+
+    .trust-item h3 {
+        font-size: 1.1rem;
+    }
+
+    .faq-section-wide h2,
+    .testimonials-section h2,
+    .final-cta h2 {
+        font-size: 1.5rem;
+    }
+
+    .guarantee-text {
+        font-size: 0.8125rem;
+    }
+}
+
+/* Update these background animation styles */
+.pricing {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(120deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.pricing::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(var(--primary-rgb), 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 100% 0%, rgba(var(--primary-rgb), 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(var(--primary-rgb), 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(var(--primary-rgb), 0.08) 0%, transparent 50%);
+    background-size: 50% 50%;
+    background-position: 0 0;
+    animation: gradientShift 15s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+/* Update existing pricing-card styles to ensure content stays above animation */
+.pricing-card {
+    position: relative;
+    z-index: 1;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    backdrop-filter: blur(4px);
+}
+
+.pricing-card-container {
+    max-width: 1200px;
+    padding: 0rem 2rem;
+    margin: 0 auto;
+}
+
+.purchase-button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
