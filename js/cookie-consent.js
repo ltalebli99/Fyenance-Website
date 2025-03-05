@@ -1,7 +1,11 @@
 class CookieConsent {
     constructor() {
       this.cookieConsentKey = 'fyenance_cookie_consent';
-      this.initializeConsent();
+      // Make the constructor return a promise that resolves when analytics are ready
+      return (async () => {
+        await this.initializeConsent();
+        return this;
+      })();
     }
   
     async initializeConsent() {
@@ -239,8 +243,12 @@ class CookieConsent {
     }
   }
   
-  // Initialize cookie consent system
-  document.addEventListener('DOMContentLoaded', () => {
-    new CookieConsent();
-  });
+  // Initialize cookie consent system immediately and expose the promise
+  window.analyticsReady = (async () => {
+    try {
+        await new CookieConsent();
+    } catch (error) {
+        console.error('Error initializing cookie consent:', error);
+    }
+  })();
 
