@@ -212,47 +212,52 @@
             const sessionId = getUrlParameter('session_id');
             const email = getUrlParameter('email');
             
-            if (!sessionId) {
-                console.log('No session ID found, skipping tracking');
-                return;
-            }
-            if (!email) {
-                console.log('No email found, skipping tracking');
+            if (!sessionId || !email) {
+                console.log('Missing session ID or email, skipping tracking');
                 return;
             }
 
-            // Track in Google Analytics (will only work if cookies are accepted)
-            if (typeof gtag === 'function') {
-                console.log('Calling gtag events');
-                gtag('event', 'purchase', {
-                    transaction_id: sessionId,
-                    value: 12.00,
-                    currency: 'USD',
-                    session_id: window.fyenanceSessionId,
-                    email: email,
-                    items: [{
-                        item_name: 'Fyenance License',
-                        item_category: 'Software License',
-                        price: 12.00,
-                        quantity: 1
-                    }]
-                });
-                gtag('event', 'conversion', {
-                    'send_to': 'AW-16822557696/I6Q1CNe8t6YaEIC4z9U-',
-                    'transaction_id': '',
-                })
-            }
+            // Wait for analytics to be ready
+            if (window.analyticsReady) {
+                try {
+                    await window.analyticsReady;
+                    
+                    // Now we can safely call our tracking functions
+                    if (typeof gtag === 'function') {
+                        console.log('Calling gtag events');
+                        gtag('event', 'purchase', {
+                            transaction_id: sessionId,
+                            value: 12.00,
+                            currency: 'USD',
+                            session_id: window.fyenanceSessionId,
+                            email: email,
+                            items: [{
+                                item_name: 'Fyenance License',
+                                item_category: 'Software License',
+                                price: 12.00,
+                                quantity: 1
+                            }]
+                        });
+                        gtag('event', 'conversion', {
+                            'send_to': 'AW-16822557696/I6Q1CNe8t6YaEIC4z9U-',
+                            'transaction_id': sessionId,
+                        });
+                    }
 
-            // Track in Reddit Pixel
-            if (typeof trackRedditPurchase === 'function') {
-                console.log('Calling trackRedditPurchase');
-                trackRedditPurchase(email, sessionId);
-            }
+                    if (typeof trackRedditPurchase === 'function') {
+                        console.log('Calling trackRedditPurchase');
+                        trackRedditPurchase(email, sessionId);
+                    }
 
-            // Track in Meta Pixel
-            if (typeof trackMetaPurchase === 'function') {
-                console.log('Calling trackMetaPurchase');
-                trackMetaPurchase(email, sessionId);
+                    if (typeof trackMetaPurchase === 'function') {
+                        console.log('Calling trackMetaPurchase');
+                        trackMetaPurchase(email, sessionId);
+                    }
+                } catch (error) {
+                    console.error('Error during tracking:', error);
+                }
+            } else {
+                console.error('Analytics not initialized');
             }
         }
     

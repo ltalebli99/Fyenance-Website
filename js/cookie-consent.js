@@ -123,28 +123,43 @@ class CookieConsent {
     }
   
     initializeAnalytics() {
-      // Load GA4 script
-      const gaScript = document.createElement('script');
-      gaScript.async = true;
-      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86';
-      document.head.appendChild(gaScript);
-      
-      // Load Google Ads script
-      const adsScript = document.createElement('script');
-      adsScript.async = true;
-      adsScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16822557696';
-      document.head.appendChild(adsScript);
-      
-      // Load Meta Pixel script
-      const metaScript = document.createElement('script');
-      metaScript.src = 'js/meta-pixel.js';
-      document.head.appendChild(metaScript);
-      
-      // Load Reddit Pixel script
-      const redditScript = document.createElement('script');
-      redditScript.src = 'js/reddit-pixel.js';
-      document.head.appendChild(redditScript);
-      
+      // Create a promise that resolves when all scripts are loaded
+      const loadScripts = new Promise((resolve) => {
+        // Load GA4 script
+        const gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86';
+        
+        // Load Google Ads script
+        const adsScript = document.createElement('script');
+        adsScript.async = true;
+        adsScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16822557696';
+        
+        // Load Meta Pixel script
+        const metaScript = document.createElement('script');
+        metaScript.src = 'js/meta-pixel.js';
+        
+        // Load Reddit Pixel script
+        const redditScript = document.createElement('script');
+        redditScript.src = 'js/reddit-pixel.js';
+
+        // Add load event listeners
+        let loadedCount = 0;
+        const totalScripts = 4;
+
+        const checkAllLoaded = () => {
+          loadedCount++;
+          if (loadedCount === totalScripts) {
+            resolve();
+          }
+        };
+
+        [gaScript, adsScript, metaScript, redditScript].forEach(script => {
+          script.onload = checkAllLoaded;
+          document.head.appendChild(script);
+        });
+      });
+
       // Initialize gtag
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -154,6 +169,9 @@ class CookieConsent {
 
       // Initialize Clarity with session tracking
       initializeClarity();
+
+      // Expose the promise so we can wait for it
+      window.analyticsReady = loadScripts;
     }
   
     disableAnalytics() {
