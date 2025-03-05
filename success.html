@@ -218,68 +218,64 @@
                 return;
             }
 
-            console.log('Waiting for analytics to be ready...');
-            try {
-                // Wait for analytics to be ready
-                await window.analyticsReady;
-                
-                // Double check that GA is really ready
-                if (!window._gaReady) {
-                    console.log('GA not properly initialized, waiting...');
-                    // Poll until ready
-                    await new Promise(resolve => {
-                        const checkGAReady = () => {
-                            if (window._gaReady && typeof gtag === 'function') {
-                                resolve();
-                            } else {
-                                setTimeout(checkGAReady, 100);
-                            }
-                        };
-                        checkGAReady();
-                    });
-                }
-                
-                console.log('Analytics confirmed ready, proceeding with tracking');
-                
-                // Now we can safely call our tracking functions
-                if (typeof gtag === 'function') {
-                    console.log('Calling gtag events');
-                    gtag('event', 'purchase', {
-                        transaction_id: sessionId,
-                        value: 12.00,
-                        currency: 'USD',
-                        session_id: window.fyenanceSessionId,
-                        email: email,
-                        items: [{
-                            item_name: 'Fyenance License',
-                            item_category: 'Software License',
-                            price: 12.00,
-                            quantity: 1
-                        }]
-                    });
-                    gtag('event', 'conversion', {
-                        'send_to': 'AW-16822557696/I6Q1CNe8t6YaEIC4z9U-',
-                        'transaction_id': sessionId,
-                    });
-                } else {
-                    console.log('gtag not available');
-                }
+            console.log('Setting up direct GA tracking...');
+            
+            // Set up GA directly on the success page
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-21G8LJFM86');
+            gtag('config', 'AW-16822557696');
+            
+            // Load GA script directly
+            const gaScript = document.createElement('script');
+            gaScript.async = true;
+            gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86';
+            document.head.appendChild(gaScript);
+            
+            // Wait for script to load
+            await new Promise(resolve => {
+                gaScript.onload = resolve;
+                // Add a timeout just in case
+                setTimeout(resolve, 2000);
+            });
+            
+            console.log('GA script loaded, sending purchase event');
+            
+            // Now we can safely call our tracking functions
+            gtag('event', 'purchase', {
+                transaction_id: sessionId,
+                value: 12.00,
+                currency: 'USD',
+                session_id: window.fyenanceSessionId,
+                email: email,
+                items: [{
+                    item_name: 'Fyenance License',
+                    item_category: 'Software License',
+                    price: 12.00,
+                    quantity: 1
+                }]
+            });
+            
+            gtag('event', 'conversion', {
+                'send_to': 'AW-16822557696/I6Q1CNe8t6YaEIC4z9U-',
+                'transaction_id': sessionId,
+            });
+            
+            // Call other tracking functions if available
+            if (typeof trackRedditPurchase === 'function') {
+                console.log('Calling trackRedditPurchase');
+                trackRedditPurchase(email, sessionId);
+            }
 
-                if (typeof trackRedditPurchase === 'function') {
-                    console.log('Calling trackRedditPurchase');
-                    trackRedditPurchase(email, sessionId);
-                }
-
-                if (typeof trackMetaPurchase === 'function') {
-                    console.log('Calling trackMetaPurchase');
-                    trackMetaPurchase(email, sessionId);
-                }
-            } catch (error) {
-                console.error('Error during tracking:', error);
+            if (typeof trackMetaPurchase === 'function') {
+                console.log('Calling trackMetaPurchase');
+                trackMetaPurchase(email, sessionId);
             }
         }
     
-        trackPurchase();
+        // Run tracking when page loads
+        document.addEventListener('DOMContentLoaded', trackPurchase);
     </script>
 </body>
 </html>

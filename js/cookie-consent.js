@@ -127,72 +127,41 @@ class CookieConsent {
     }
   
     initializeAnalytics() {
-      return new Promise((resolve) => {
-        // Create a flag to track when GA is truly ready
-        window._gaReady = false;
-        
-        // Initialize gtag with a wrapper that will set our ready flag
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function(){
-          // Set flag to true once gtag is called for the first time after config
-          if (arguments[0] === 'config') {
-            window._gaReady = true;
-          }
-          dataLayer.push(arguments);
-        };
-        
-        gtag('js', new Date());
-        gtag('config', 'G-21G8LJFM86');
-        gtag('config', 'AW-16822557696');
+      // Simplified analytics initialization
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-21G8LJFM86');
+      gtag('config', 'AW-16822557696');
 
-        // Load GA4 script
-        const gaScript = document.createElement('script');
-        gaScript.async = true;
-        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86';
-        
-        // Load Google Ads script
-        const adsScript = document.createElement('script');
-        adsScript.async = true;
-        adsScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16822557696';
-        
-        // Load Meta Pixel script
-        const metaScript = document.createElement('script');
-        metaScript.src = 'js/meta-pixel.js';
-        
-        // Load Reddit Pixel script
-        const redditScript = document.createElement('script');
-        redditScript.src = 'js/reddit-pixel.js';
+      // Load GA4 script
+      const gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86';
+      document.head.appendChild(gaScript);
 
-        // Add load event listeners
-        let loadedCount = 0;
-        const totalScripts = 4;
-
-        const checkAllLoaded = () => {
-          loadedCount++;
-          if (loadedCount === totalScripts) {
-            // Initialize Clarity with session tracking
-            initializeClarity();
             
-            // Check if GA is ready properly
-            const checkGA = () => {
-              if (window._gaReady && typeof gtag === 'function') {
-                console.log('Google Analytics confirmed ready');
-                resolve();
-              } else {
-                console.log('Waiting for Google Analytics...');
-                setTimeout(checkGA, 100); // Poll every 100ms instead of arbitrary delay
-              }
-            };
-            
-            checkGA();
-          }
-        };
-
-        [gaScript, adsScript, metaScript, redditScript].forEach(script => {
-          script.onload = checkAllLoaded;
-          document.head.appendChild(script);
-        });
-      });
+            // Load Google Ads script
+            const adsScript = document.createElement('script');
+            adsScript.async = true;
+            adsScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16822557696';
+            document.head.appendChild(adsScript);
+      
+      // Load Meta Pixel script
+      const metaScript = document.createElement('script');
+      metaScript.src = 'js/meta-pixel.js';
+      document.head.appendChild(metaScript);
+      
+      // Load Reddit Pixel script
+      const redditScript = document.createElement('script');
+      redditScript.src = 'js/reddit-pixel.js';
+      document.head.appendChild(redditScript);
+      
+      // Initialize Clarity
+      initializeClarity();
+      
+      // Resolve the analytics ready promise immediately
+      return Promise.resolve();
     }
   
     disableAnalytics() {
@@ -266,8 +235,8 @@ class CookieConsent {
   // Initialize cookie consent system immediately and expose the promise
   window.analyticsReady = (async () => {
     try {
-      const consent = await new CookieConsent();
-      return Promise.resolve(); // Explicitly resolve
+      await new CookieConsent();
+      return Promise.resolve();
     } catch (error) {
       console.error('Error initializing cookie consent:', error);
       return Promise.resolve();
