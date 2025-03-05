@@ -11,13 +11,6 @@
     <link rel="stylesheet" href="css/cookie-consent.css">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.ico">
     <script src="https://js.stripe.com/v3/"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-21G8LJFM86');
-    </script>
 </head>
 <body>
     <noscript><img height="1" width="1" style="display:none"
@@ -75,7 +68,7 @@
                         </div>
 
                         <div class="purchase-button-container">
-                            <button id="purchase-btn" class="cta-button">
+                            <button id="purchase-btn" class="cta-button-alt">
                                 <i class="fas fa-lock"></i> Get Instant Access
                             </button>
 
@@ -206,11 +199,9 @@
             </div>
         </div>
     </footer>
-    <!-- Analytics Scripts -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86"></script>
+
+    <!-- Only include cookie consent script -->
     <script src="js/cookie-consent.js"></script>
-    <script src="js/reddit-pixel.js"></script>
-    <script src="js/meta-pixel.js"></script>
 
     <script>
         document.getElementById('purchase-btn').addEventListener('click', async () => {
@@ -223,7 +214,7 @@
                 return;
             }
             
-            // Track email lead and add to cart
+            // Track email lead and add to cart (these functions will only work if cookies are accepted)
             trackMetaLead(email);
             trackMetaAddToCart(email);
             trackRedditLead(email);

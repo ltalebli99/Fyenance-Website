@@ -123,11 +123,34 @@ class CookieConsent {
     }
   
     initializeAnalytics() {
-      // Google Analytics
+      // Load GA4 script
+      const gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86';
+      document.head.appendChild(gaScript);
+      
+      // Load Google Ads script
+      const adsScript = document.createElement('script');
+      adsScript.async = true;
+      adsScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16822557696';
+      document.head.appendChild(adsScript);
+      
+      // Load Meta Pixel script
+      const metaScript = document.createElement('script');
+      metaScript.src = 'js/meta-pixel.js';
+      document.head.appendChild(metaScript);
+      
+      // Load Reddit Pixel script
+      const redditScript = document.createElement('script');
+      redditScript.src = 'js/reddit-pixel.js';
+      document.head.appendChild(redditScript);
+      
+      // Initialize gtag
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-21G8LJFM86');
+      gtag('config', 'AW-16822557696');
 
       // Initialize Clarity with session tracking
       initializeClarity();
@@ -136,7 +159,8 @@ class CookieConsent {
     disableAnalytics() {
       // Disable Google Analytics
       window['ga-disable-G-21G8LJFM86'] = true;
-      
+      window['ga-disable-AW-16822557696'] = true;
+
       // Clear existing analytics cookies
       document.cookie.split(";").forEach(function(c) { 
         document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 

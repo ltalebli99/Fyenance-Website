@@ -198,10 +198,6 @@
     </footer>
 
     
-    <!-- Analytics Scripts -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G8LJFM86"></script>
-    <script src="js/cookie-consent.js"></script>
-
     <script>
         // Function to get URL parameters
         function getUrlParameter(name) {
@@ -225,8 +221,9 @@
                 return;
             }
 
-            // Track in Google Analytics
+            // Track in Google Analytics (will only work if cookies are accepted)
             if (typeof gtag === 'function') {
+                console.log('Calling gtag events');
                 gtag('event', 'purchase', {
                     transaction_id: sessionId,
                     value: 12.00,
@@ -240,6 +237,10 @@
                         quantity: 1
                     }]
                 });
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-16822557696/I6Q1CNe8t6YaEIC4z9U-',
+                    'transaction_id': '',
+                })
             }
 
             // Track in Reddit Pixel
@@ -260,7 +261,8 @@
             trackPurchase();
         });
     </script>
-    <script src="js/reddit-pixel.js"></script>
-    <script src="js/meta-pixel.js"></script>
+
+    <!-- Only include cookie consent script -->
+    <script src="js/cookie-consent.js"></script>
 </body>
 </html>
