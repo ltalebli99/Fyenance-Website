@@ -123,8 +123,8 @@ class CookieConsent {
     }
   
     initializeAnalytics() {
-      // Create a promise that resolves when all scripts are loaded
-      const loadScripts = new Promise((resolve) => {
+      // Set up the promise BEFORE loading scripts
+      window.analyticsReady = new Promise((resolve) => {
         // Load GA4 script
         const gaScript = document.createElement('script');
         gaScript.async = true;
@@ -169,9 +169,6 @@ class CookieConsent {
 
       // Initialize Clarity with session tracking
       initializeClarity();
-
-      // Expose the promise so we can wait for it
-      window.analyticsReady = loadScripts;
     }
   
     disableAnalytics() {
