@@ -127,15 +127,24 @@ class CookieConsent {
     }
   
     initializeAnalytics() {
-      // Initialize gtag first
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-21G8LJFM86');
-      gtag('config', 'AW-16822557696');
+      return new Promise((resolve) => {
+        // Create a flag to track when GA is truly ready
+        window._gaReady = false;
+        
+        // Initialize gtag with a wrapper that will set our ready flag
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function(){
+          // Set flag to true once gtag is called for the first time after config
+          if (arguments[0] === 'config') {
+            window._gaReady = true;
+          }
+          dataLayer.push(arguments);
+        };
+        
+        gtag('js', new Date());
+        gtag('config', 'G-21G8LJFM86');
+        gtag('config', 'AW-16822557696');
 
-      // Create a new promise for analytics readiness
-      const analyticsPromise = new Promise((resolve) => {
         // Load GA4 script
         const gaScript = document.createElement('script');
         gaScript.async = true;
@@ -161,20 +170,21 @@ class CookieConsent {
         const checkAllLoaded = () => {
           loadedCount++;
           if (loadedCount === totalScripts) {
-            // Double check that gtag is actually available
-            if (typeof window.gtag === 'function') {
-              resolve();
-            } else {
-              // If gtag isn't available after scripts load, wait a bit longer
-              setTimeout(() => {
-                if (typeof window.gtag === 'function') {
-                  resolve();
-                } else {
-                  console.error('Google Analytics failed to initialize');
-                  resolve(); // Resolve anyway to not block other tracking
-                }
-              }, 1000);
-            }
+            // Initialize Clarity with session tracking
+            initializeClarity();
+            
+            // Check if GA is ready properly
+            const checkGA = () => {
+              if (window._gaReady && typeof gtag === 'function') {
+                console.log('Google Analytics confirmed ready');
+                resolve();
+              } else {
+                console.log('Waiting for Google Analytics...');
+                setTimeout(checkGA, 100); // Poll every 100ms instead of arbitrary delay
+              }
+            };
+            
+            checkGA();
           }
         };
 
@@ -183,15 +193,6 @@ class CookieConsent {
           document.head.appendChild(script);
         });
       });
-
-      // Set the global analyticsReady promise
-      window.analyticsReady = analyticsPromise;
-
-      // Initialize Clarity with session tracking
-      initializeClarity();
-      
-      // Return the promise so it can be awaited
-      return analyticsPromise;
     }
   
     disableAnalytics() {
@@ -265,12 +266,11 @@ class CookieConsent {
   // Initialize cookie consent system immediately and expose the promise
   window.analyticsReady = (async () => {
     try {
-      await new CookieConsent();
-      // Return the analyticsReady promise that was set during initialization
-      return window.analyticsReady || Promise.resolve();
+      const consent = await new CookieConsent();
+      return Promise.resolve(); // Explicitly resolve
     } catch (error) {
       console.error('Error initializing cookie consent:', error);
-      return Promise.resolve(); // Return a resolved promise in case of error
+      return Promise.resolve();
     }
   })();
 

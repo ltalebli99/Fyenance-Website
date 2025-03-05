@@ -222,7 +222,24 @@
             try {
                 // Wait for analytics to be ready
                 await window.analyticsReady;
-                console.log('Analytics ready, proceeding with tracking');
+                
+                // Double check that GA is really ready
+                if (!window._gaReady) {
+                    console.log('GA not properly initialized, waiting...');
+                    // Poll until ready
+                    await new Promise(resolve => {
+                        const checkGAReady = () => {
+                            if (window._gaReady && typeof gtag === 'function') {
+                                resolve();
+                            } else {
+                                setTimeout(checkGAReady, 100);
+                            }
+                        };
+                        checkGAReady();
+                    });
+                }
+                
+                console.log('Analytics confirmed ready, proceeding with tracking');
                 
                 // Now we can safely call our tracking functions
                 if (typeof gtag === 'function') {
