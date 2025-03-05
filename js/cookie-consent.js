@@ -127,6 +127,13 @@ class CookieConsent {
     }
   
     initializeAnalytics() {
+      // Initialize gtag first
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-21G8LJFM86');
+      gtag('config', 'AW-16822557696');
+
       // Set up the promise BEFORE loading scripts
       window.analyticsReady = new Promise((resolve) => {
         // Load GA4 script
@@ -154,7 +161,20 @@ class CookieConsent {
         const checkAllLoaded = () => {
           loadedCount++;
           if (loadedCount === totalScripts) {
-            resolve();
+            // Double check that gtag is actually available
+            if (typeof window.gtag === 'function') {
+              resolve();
+            } else {
+              // If gtag isn't available after scripts load, wait a bit longer
+              setTimeout(() => {
+                if (typeof window.gtag === 'function') {
+                  resolve();
+                } else {
+                  console.error('Google Analytics failed to initialize');
+                  resolve(); // Resolve anyway to not block other tracking
+                }
+              }, 1000);
+            }
           }
         };
 
@@ -163,13 +183,6 @@ class CookieConsent {
           document.head.appendChild(script);
         });
       });
-
-      // Initialize gtag
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-21G8LJFM86');
-      gtag('config', 'AW-16822557696');
 
       // Initialize Clarity with session tracking
       initializeClarity();
