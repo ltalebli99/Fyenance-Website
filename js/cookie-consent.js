@@ -134,8 +134,8 @@ class CookieConsent {
       gtag('config', 'G-21G8LJFM86');
       gtag('config', 'AW-16822557696');
 
-      // Set up the promise BEFORE loading scripts
-      window.analyticsReady = new Promise((resolve) => {
+      // Create a new promise for analytics readiness
+      const analyticsPromise = new Promise((resolve) => {
         // Load GA4 script
         const gaScript = document.createElement('script');
         gaScript.async = true;
@@ -184,8 +184,14 @@ class CookieConsent {
         });
       });
 
+      // Set the global analyticsReady promise
+      window.analyticsReady = analyticsPromise;
+
       // Initialize Clarity with session tracking
       initializeClarity();
+      
+      // Return the promise so it can be awaited
+      return analyticsPromise;
     }
   
     disableAnalytics() {
@@ -259,9 +265,12 @@ class CookieConsent {
   // Initialize cookie consent system immediately and expose the promise
   window.analyticsReady = (async () => {
     try {
-        await new CookieConsent();
+      await new CookieConsent();
+      // Return the analyticsReady promise that was set during initialization
+      return window.analyticsReady || Promise.resolve();
     } catch (error) {
-        console.error('Error initializing cookie consent:', error);
+      console.error('Error initializing cookie consent:', error);
+      return Promise.resolve(); // Return a resolved promise in case of error
     }
   })();
 
