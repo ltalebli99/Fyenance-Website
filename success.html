@@ -218,7 +218,6 @@
                 return;
             }
 
-            console.log('Setting up direct GA tracking...');
             
             // Set up GA directly on the success page
             window.dataLayer = window.dataLayer || [];
@@ -240,7 +239,6 @@
                 setTimeout(resolve, 2000);
             });
             
-            console.log('GA script loaded, sending purchase event');
             
             // Now we can safely call our tracking functions
             gtag('event', 'purchase', {
@@ -264,12 +262,10 @@
             
             // Call other tracking functions if available
             if (typeof trackRedditPurchase === 'function') {
-                console.log('Calling trackRedditPurchase');
                 trackRedditPurchase(email, sessionId);
             }
 
             if (typeof trackMetaPurchase === 'function') {
-                console.log('Calling trackMetaPurchase');
                 trackMetaPurchase(email, sessionId);
             }
         }
