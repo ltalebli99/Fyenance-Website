@@ -34,10 +34,10 @@
                         
 
                         <div class="price">
-                            <span class="amount">$12</span>
+                            <span class="amount deal-price-current">$12</span>
                             <div class="price-note-container">
                                 <span class="price-note">one-time payment</span>
-                                <span class="original-price">$15</span>
+                                <span class="original-price deal-price-regular">$15</span>
                             </div>
                         </div>
                         
@@ -52,7 +52,7 @@
                             <div class="price-increase-warning-title"><i class="fas fa-clock"></i> 
                                 <strong>Limited time:</strong>
                             </div>
-                            <div class="price-increase-warning-text">Increases to $15 after early bird ends</div>
+                            <div class="price-increase-warning-text">Increases to <span class="deal-price-regular">$15</span> after early bird ends</div>
                         </div>
                     </div>
                     
@@ -175,7 +175,7 @@
             <h2>Ready for your financial peace of mind? 🧘</h2>
             <p>Join over 100 users transorming their financial habits with Fyenance</p>
             <a href="#top" class="cta-button">
-                <i class="fas fa-lock"></i> Get Started Now - $12
+                <i class="fas fa-lock"></i> Get Started Now - <span class="deal-price-current">$12</span>
             </a>
             <div class="guarantees">
                 <p class="guarantee-text"><i class="fas fa-sync"></i> Free updates for life</p>
@@ -202,6 +202,7 @@
 
     <!-- Only include cookie consent script -->
     <script src="js/cookie-consent.js"></script>
+    <script src="js/deal-status.js?t=20250526"></script>
 
     <script>
         document.getElementById('purchase-btn').addEventListener('click', async () => {
@@ -223,15 +224,16 @@
             try {
                 // Only track if gtag exists (meaning user accepted analytics cookies)
                 if (typeof gtag === 'function') {
+                    const checkoutPrice = window.fyenanceDeal?.currentPrice ?? 12;
                     gtag('event', 'begin_checkout', {
                         currency: 'USD',
-                        value: 12.00,
+                        value: checkoutPrice,
                         session_id: window.fyenanceSessionId,
                         em: email,
                         items: [{
                             item_name: 'Fyenance License',
                             item_category: 'Software License',
-                            price: 12.00,
+                            price: checkoutPrice,
                             quantity: 1
                         }]
                     });

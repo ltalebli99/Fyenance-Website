@@ -1,3 +1,48 @@
+function formatDealPrice(dollars) {
+    const n = Number(dollars);
+    if (!Number.isFinite(n)) return '$0';
+    if (Number.isInteger(n) || Math.round(n * 100) % 100 === 0) {
+        return '$' + Math.round(n);
+    }
+    return '$' + n.toFixed(2);
+}
+
+function normalizeDealData(data) {
+    const earlyBirdPrice = data.earlyBirdPrice ?? data.currentPrice;
+    const regularPrice = data.regularPrice ?? data.currentPrice;
+    return { ...data, earlyBirdPrice, regularPrice };
+}
+
+function updateDealPrices(data) {
+    data = normalizeDealData(data);
+    const currentDollars = data.isEarlyBird ? data.earlyBirdPrice : data.regularPrice;
+    const formatted = {
+        current: formatDealPrice(currentDollars),
+        early: formatDealPrice(data.earlyBirdPrice),
+        regular: formatDealPrice(data.regularPrice),
+    };
+
+    window.fyenanceDeal = {
+        ...data,
+        currentPrice: currentDollars,
+        formatted,
+    };
+
+    document.querySelectorAll('.deal-price-current').forEach((el) => {
+        el.textContent = formatted.current;
+    });
+    document.querySelectorAll('.deal-price-early').forEach((el) => {
+        el.textContent = formatted.early;
+    });
+    document.querySelectorAll('.deal-price-regular').forEach((el) => {
+        el.textContent = formatted.regular;
+    });
+
+    document.querySelectorAll('.price-increase-warning, .original-price').forEach((el) => {
+        el.style.display = data.isEarlyBird ? '' : 'none';
+    });
+}
+
 async function animateCount(element, target, duration = 6000) {
     const start = 100;
     const frames = 60;
@@ -28,23 +73,22 @@ async function animateCount(element, target, duration = 6000) {
 async function updateEarlyBirdCount() {
     try {
         const response = await fetch('https://api.fyenanceapp.com/v1/deal-status');
-        const data = await response.json();
+        const data = normalizeDealData(await response.json());
         
-        // Get all elements that need updating
+        updateDealPrices(data);
+
         const countElements = document.querySelectorAll('.remaining-count');
         
         countElements.forEach(element => {
             animateCount(element, data.remaining);
         });
 
-        // Add urgency styling if running low
         if (data.remaining <= 10) {
             countElements.forEach(element => {
                 element.style.color = '#dc3545';
             });
         }
 
-        // Hide elements if sold out
         if (data.remaining <= 0) {
             const specialOffer = document.querySelector('.special-offer');
             const earlyBirdBadge = document.querySelector('.hero-badge');
@@ -61,7 +105,6 @@ async function updateLicenseCount() {
         const response = await fetch('https://api.fyenanceapp.com/v1/license-count');
         const data = await response.json();
         
-        // Update all license count elements
         const countElements = document.querySelectorAll('.license-count');
         countElements.forEach(element => {
             element.textContent = data.count;
@@ -71,11 +114,9 @@ async function updateLicenseCount() {
     }
 }
 
-// Call immediately and then every 10 minutes
 updateEarlyBirdCount();
 setInterval(updateEarlyBirdCount, 600000);
 
-// Initialize license count
 document.addEventListener('DOMContentLoaded', () => {
     updateLicenseCount();
 });
