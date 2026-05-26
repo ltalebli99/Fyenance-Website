@@ -44,7 +44,7 @@ class CookieConsent {
         return response.headers.get('X-User-Country') || 'XX';
       } catch (error) {
         console.error('Error getting country code:', error);
-        return 'EU'; 
+        return 'XX';
       }
     }
   
@@ -179,10 +179,13 @@ class CookieConsent {
     }
   }
   
-  // Generate or retrieve session ID
-  window.fyenanceSessionId = sessionStorage.getItem('fyenance_session_id') || crypto.randomUUID();
-  // Store it in sessionStorage
-  sessionStorage.setItem('fyenance_session_id', window.fyenanceSessionId);
+  // Generate or retrieve session ID (sessionStorage may be blocked in strict privacy modes)
+  try {
+    window.fyenanceSessionId = sessionStorage.getItem('fyenance_session_id') || crypto.randomUUID();
+    sessionStorage.setItem('fyenance_session_id', window.fyenanceSessionId);
+  } catch (error) {
+    window.fyenanceSessionId = crypto.randomUUID();
+  }
 
   function initializeClarity() {
     if (window.clarity) {

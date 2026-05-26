@@ -214,11 +214,11 @@
                 return;
             }
             
-            // Track email lead and add to cart (these functions will only work if cookies are accepted)
-            trackMetaLead(email);
-            trackMetaAddToCart(email);
-            trackRedditLead(email);
-            trackRedditAddToCart(email);
+            // Marketing pixels only load when analytics cookies are accepted
+            if (typeof trackMetaLead === 'function') trackMetaLead(email);
+            if (typeof trackMetaAddToCart === 'function') trackMetaAddToCart(email);
+            if (typeof trackRedditLead === 'function') trackRedditLead(email);
+            if (typeof trackRedditAddToCart === 'function') trackRedditAddToCart(email);
 
             try {
                 // Only track if gtag exists (meaning user accepted analytics cookies)
